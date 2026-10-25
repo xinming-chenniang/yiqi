@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-10-24 07:49:12",
-  "dataAsOf": "2026-10-24",
+  "lastUpdated": "2026-10-25 08:00:11",
+  "dataAsOf": "2026-10-25",
   "stats": {
     "totalMembers": 724,
     "activeMembers": 698,
     "activeWindow": {
       "days": 30,
-      "since": "2026-09-24",
-      "latest": "2026-10-24",
+      "since": "2026-09-25",
+      "latest": "2026-10-25",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
@@ -456,9 +456,9 @@
         "realm": "阿尔萨斯",
         "class": "猎人",
         "spec": "野兽控制",
-        "achievement_points": 52235,
-        "average_item_level": 328.0,
-        "mythic_score": 3293.9
+        "achievement_points": 52255,
+        "average_item_level": 329.0,
+        "mythic_score": 3310.4
       },
       {
         "rank": 2,
@@ -862,7 +862,7 @@
         "spec": "奥术",
         "achievement_points": 24805,
         "average_item_level": 330.0,
-        "mythic_score": 3763.0
+        "mythic_score": 3777.4
       },
       {
         "rank": 2,
@@ -880,7 +880,7 @@
         "realm": "白银之手",
         "class": "法师",
         "spec": "奥术",
-        "achievement_points": 16865,
+        "achievement_points": 16895,
         "average_item_level": 331.0,
         "mythic_score": 3650.7
       },
@@ -900,12 +900,22 @@
         "realm": "阿尔萨斯",
         "class": "猎人",
         "spec": "野兽控制",
-        "achievement_points": 19915,
-        "average_item_level": 330.0,
-        "mythic_score": 3531.4
+        "achievement_points": 19920,
+        "average_item_level": 331.0,
+        "mythic_score": 3561.4
       },
       {
         "rank": 6,
+        "name": "Pigeonc",
+        "realm": "阿尔萨斯",
+        "class": "潜行者",
+        "spec": "敏锐",
+        "achievement_points": 33815,
+        "average_item_level": 329.0,
+        "mythic_score": 3473.7
+      },
+      {
+        "rank": 7,
         "name": "寄八只羊",
         "realm": "阿莱克斯塔萨",
         "class": "术士",
@@ -915,16 +925,6 @@
         "mythic_score": 3451.9
       },
       {
-        "rank": 7,
-        "name": "Pigeonc",
-        "realm": "阿尔萨斯",
-        "class": "潜行者",
-        "spec": "敏锐",
-        "achievement_points": 33800,
-        "average_item_level": 329.0,
-        "mythic_score": 3441.0
-      },
-      {
         "rank": 8,
         "name": "拖拖米",
         "realm": "阿尔萨斯",
@@ -932,7 +932,7 @@
         "spec": "防护",
         "achievement_points": 31695,
         "average_item_level": 329.938,
-        "mythic_score": 3394.2
+        "mythic_score": 3439.0
       },
       {
         "rank": 9,
@@ -956,6 +956,36 @@
       },
       {
         "rank": 11,
+        "name": "圆溜溜儿丶",
+        "realm": "国王之谷",
+        "class": "萨满祭司",
+        "spec": "恢复",
+        "achievement_points": 26795,
+        "average_item_level": 329.0,
+        "mythic_score": 3333.7
+      },
+      {
+        "rank": 12,
+        "name": "白鯨儿",
+        "realm": "国王之谷",
+        "class": "圣骑士",
+        "spec": "神圣",
+        "achievement_points": 38870,
+        "average_item_level": 325.0,
+        "mythic_score": 3320.3
+      },
+      {
+        "rank": 13,
+        "name": "逸龙戏贰凤",
+        "realm": "阿尔萨斯",
+        "class": "猎人",
+        "spec": "野兽控制",
+        "achievement_points": 52255,
+        "average_item_level": 329.0,
+        "mythic_score": 3310.4
+      },
+      {
+        "rank": 14,
         "name": "莫得感情的人",
         "realm": "阿尔萨斯",
         "class": "法师",
@@ -965,17 +995,7 @@
         "mythic_score": 3305.6
       },
       {
-        "rank": 12,
-        "name": "逸龙戏贰凤",
-        "realm": "阿尔萨斯",
-        "class": "猎人",
-        "spec": "野兽控制",
-        "achievement_points": 52235,
-        "average_item_level": 328.0,
-        "mythic_score": 3293.9
-      },
-      {
-        "rank": 13,
+        "rank": 15,
         "name": "Acg",
         "realm": "阿尔萨斯",
         "class": "法师",
@@ -985,17 +1005,7 @@
         "mythic_score": 3291.0
       },
       {
-        "rank": 14,
-        "name": "圆溜溜儿丶",
-        "realm": "国王之谷",
-        "class": "萨满祭司",
-        "spec": "恢复",
-        "achievement_points": 26625,
-        "average_item_level": 325.0,
-        "mythic_score": 3285.1
-      },
-      {
-        "rank": 15,
+        "rank": 16,
         "name": "大灬不丶点",
         "realm": "斯克提斯",
         "class": "圣骑士",
@@ -1005,23 +1015,13 @@
         "mythic_score": 3251.7
       },
       {
-        "rank": 16,
-        "name": "白鯨儿",
-        "realm": "国王之谷",
-        "class": "圣骑士",
-        "spec": "神圣",
-        "achievement_points": 38870,
-        "average_item_level": 324.0,
-        "mythic_score": 3248.0
-      },
-      {
         "rank": 17,
         "name": "奥酥宝猪",
         "realm": "阿尔萨斯",
         "class": "法师",
         "spec": "奥术",
-        "achievement_points": 17415,
-        "average_item_level": 328.0,
+        "achievement_points": 17440,
+        "average_item_level": 329.0,
         "mythic_score": 3239.8
       },
       {
