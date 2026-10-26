@@ -1,21 +1,21 @@
 {
-  "lastUpdated": "2026-10-25 08:00:11",
-  "dataAsOf": "2026-10-25",
+  "lastUpdated": "2026-10-26 08:20:08",
+  "dataAsOf": "2026-10-26",
   "stats": {
-    "totalMembers": 724,
-    "activeMembers": 698,
+    "totalMembers": 725,
+    "activeMembers": 699,
     "activeWindow": {
       "days": 30,
-      "since": "2026-09-25",
-      "latest": "2026-10-25",
+      "since": "2026-09-26",
+      "latest": "2026-10-26",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
-      "mplusActive": 77
+      "mplusActive": 78
     },
     "dataCompleteness": {
-      "total": 724,
-      "complete": 703,
+      "total": 725,
+      "complete": 704,
       "incomplete": 21,
       "percentage": 97.1
     }
@@ -28,7 +28,7 @@
       },
       {
         "name": "猎人",
-        "value": 76
+        "value": 77
       },
       {
         "name": "恶魔猎手",
@@ -78,7 +78,7 @@
     "factionDistribution": [
       {
         "name": "Horde",
-        "value": 584
+        "value": 585
       },
       {
         "name": "Alliance",
@@ -99,11 +99,11 @@
         "value": 50
       },
       {
-        "name": "暗夜精灵",
-        "value": 43
+        "name": "玛格汉兽人",
+        "value": 44
       },
       {
-        "name": "玛格汉兽人",
+        "name": "暗夜精灵",
         "value": 43
       },
       {
@@ -194,7 +194,7 @@
     "realmDistribution": [
       {
         "name": "阿尔萨斯",
-        "value": 449
+        "value": 450
       },
       {
         "name": "死亡之翼",
@@ -440,7 +440,7 @@
     "genderDistribution": [
       {
         "name": "女",
-        "value": 389
+        "value": 390
       },
       {
         "name": "男",
@@ -466,7 +466,7 @@
         "realm": "阿尔萨斯",
         "class": "牧师",
         "spec": "暗影",
-        "achievement_points": 51570,
+        "achievement_points": 51655,
         "average_item_level": 214.0,
         "mythic_score": 0.0
       },
@@ -476,7 +476,7 @@
         "realm": "阿尔萨斯",
         "class": "战士",
         "spec": "武器",
-        "achievement_points": 46305,
+        "achievement_points": 46325,
         "average_item_level": 319.0,
         "mythic_score": 0.0
       },
@@ -597,7 +597,7 @@
         "class": "圣骑士",
         "spec": "惩戒",
         "achievement_points": 43070,
-        "average_item_level": 322.0,
+        "average_item_level": 323.0,
         "mythic_score": 2654.0
       },
       {
@@ -607,37 +607,37 @@
         "class": "猎人",
         "spec": "野兽控制",
         "achievement_points": 43070,
-        "average_item_level": 321.0,
+        "average_item_level": 326.0,
         "mythic_score": 2602.2
       },
       {
         "rank": 17,
+        "name": "污丫",
+        "realm": "阿尔萨斯",
+        "class": "恶魔猎手",
+        "spec": "浩劫",
+        "achievement_points": 43070,
+        "average_item_level": 276.0,
+        "mythic_score": 0.0
+      },
+      {
+        "rank": 18,
+        "name": "燒丫",
+        "realm": "阿尔萨斯",
+        "class": "术士",
+        "spec": "毁灭",
+        "achievement_points": 43070,
+        "average_item_level": 282.0,
+        "mythic_score": 0.0
+      },
+      {
+        "rank": 19,
         "name": "德丫",
         "realm": "死亡之翼",
         "class": "德鲁伊",
         "spec": "守护",
         "achievement_points": 43050,
         "average_item_level": 294.0,
-        "mythic_score": 0.0
-      },
-      {
-        "rank": 18,
-        "name": "污丫",
-        "realm": "阿尔萨斯",
-        "class": "恶魔猎手",
-        "spec": "浩劫",
-        "achievement_points": 43050,
-        "average_item_level": 276.0,
-        "mythic_score": 0.0
-      },
-      {
-        "rank": 19,
-        "name": "燒丫",
-        "realm": "阿尔萨斯",
-        "class": "术士",
-        "spec": "毁灭",
-        "achievement_points": 43050,
-        "average_item_level": 282.0,
         "mythic_score": 0.0
       },
       {
@@ -866,6 +866,16 @@
       },
       {
         "rank": 2,
+        "name": "柚子甜茶",
+        "realm": "白银之手",
+        "class": "法师",
+        "spec": "奥术",
+        "achievement_points": 17015,
+        "average_item_level": 332.0,
+        "mythic_score": 3664.9
+      },
+      {
+        "rank": 3,
         "name": "六个蓝大汉",
         "realm": "阿尔萨斯",
         "class": "萨满祭司",
@@ -873,16 +883,6 @@
         "achievement_points": 26745,
         "average_item_level": 328.0,
         "mythic_score": 3661.0
-      },
-      {
-        "rank": 3,
-        "name": "柚子甜茶",
-        "realm": "白银之手",
-        "class": "法师",
-        "spec": "奥术",
-        "achievement_points": 16895,
-        "average_item_level": 331.0,
-        "mythic_score": 3650.7
       },
       {
         "rank": 4,
@@ -956,6 +956,16 @@
       },
       {
         "rank": 11,
+        "name": "大灬不丶点",
+        "realm": "斯克提斯",
+        "class": "圣骑士",
+        "spec": "惩戒",
+        "achievement_points": 18105,
+        "average_item_level": 326.0,
+        "mythic_score": 3341.1
+      },
+      {
+        "rank": 12,
         "name": "圆溜溜儿丶",
         "realm": "国王之谷",
         "class": "萨满祭司",
@@ -965,7 +975,7 @@
         "mythic_score": 3333.7
       },
       {
-        "rank": 12,
+        "rank": 13,
         "name": "白鯨儿",
         "realm": "国王之谷",
         "class": "圣骑士",
@@ -975,7 +985,7 @@
         "mythic_score": 3320.3
       },
       {
-        "rank": 13,
+        "rank": 14,
         "name": "逸龙戏贰凤",
         "realm": "阿尔萨斯",
         "class": "猎人",
@@ -985,7 +995,7 @@
         "mythic_score": 3310.4
       },
       {
-        "rank": 14,
+        "rank": 15,
         "name": "莫得感情的人",
         "realm": "阿尔萨斯",
         "class": "法师",
@@ -995,7 +1005,7 @@
         "mythic_score": 3305.6
       },
       {
-        "rank": 15,
+        "rank": 16,
         "name": "Acg",
         "realm": "阿尔萨斯",
         "class": "法师",
@@ -1005,22 +1015,12 @@
         "mythic_score": 3291.0
       },
       {
-        "rank": 16,
-        "name": "大灬不丶点",
-        "realm": "斯克提斯",
-        "class": "圣骑士",
-        "spec": "惩戒",
-        "achievement_points": 18085,
-        "average_item_level": 325.0,
-        "mythic_score": 3251.7
-      },
-      {
         "rank": 17,
         "name": "奥酥宝猪",
         "realm": "阿尔萨斯",
         "class": "法师",
         "spec": "奥术",
-        "achievement_points": 17440,
+        "achievement_points": 17455,
         "average_item_level": 329.0,
         "mythic_score": 3239.8
       },
@@ -1030,8 +1030,8 @@
         "realm": "天空之墙",
         "class": "术士",
         "spec": "痛苦",
-        "achievement_points": 25925,
-        "average_item_level": 326.0,
+        "achievement_points": 25985,
+        "average_item_level": 327.0,
         "mythic_score": 3237.5
       },
       {
@@ -1049,7 +1049,7 @@
         "name": "月影之力",
         "realm": "阿尔萨斯",
         "class": "恶魔猎手",
-        "spec": "复仇",
+        "spec": "浩劫",
         "achievement_points": 37545,
         "average_item_level": 330.0,
         "mythic_score": 3221.0
@@ -1058,10 +1058,10 @@
   },
   "meta": {
     "source": "raider.io",
-    "sourceRows": 724,
-    "uniqueCharacters": 724,
+    "sourceRows": 725,
+    "uniqueCharacters": 725,
     "duplicatesRemoved": 0,
-    "enriched": 724,
+    "enriched": 725,
     "guild": {
       "name": "一起",
       "displayName": null,
