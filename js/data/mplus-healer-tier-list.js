@@ -12,7 +12,7 @@ const mplusHealerTierList = {
   "title": "Mythic+ Healer Rankings - Tier List for Midnight Season 2",
   "source": "AutomaticJak",
   "lastUpdated": "2026/10/13",
-  "fetchedAt": "2026/10/24",
+  "fetchedAt": "2026/10/26",
   "sourceUrl": "https://www.wowhead.com/cn/guide/classes/tier-lists/healer-rankings-mythic-plus",
   "tiers": {
     "S": {
