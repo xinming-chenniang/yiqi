@@ -1,21 +1,21 @@
 {
-  "lastUpdated": "2026-10-28 09:14:48",
-  "dataAsOf": "2026-10-28",
+  "lastUpdated": "2026-10-29 09:11:17",
+  "dataAsOf": "2026-10-29",
   "stats": {
-    "totalMembers": 725,
-    "activeMembers": 699,
+    "totalMembers": 724,
+    "activeMembers": 698,
     "activeWindow": {
       "days": 30,
-      "since": "2026-09-28",
-      "latest": "2026-10-28",
+      "since": "2026-09-29",
+      "latest": "2026-10-29",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
-      "mplusActive": 78
+      "mplusActive": 77
     },
     "dataCompleteness": {
-      "total": 725,
-      "complete": 704,
+      "total": 724,
+      "complete": 703,
       "incomplete": 21,
       "percentage": 97.1
     }
@@ -24,7 +24,7 @@
     "classDistribution": [
       {
         "name": "圣骑士",
-        "value": 100
+        "value": 99
       },
       {
         "name": "猎人",
@@ -78,7 +78,7 @@
     "factionDistribution": [
       {
         "name": "Horde",
-        "value": 585
+        "value": 584
       },
       {
         "name": "Alliance",
@@ -88,7 +88,7 @@
     "raceDistribution": [
       {
         "name": "血精灵",
-        "value": 213
+        "value": 212
       },
       {
         "name": "牛头人",
@@ -194,7 +194,7 @@
     "realmDistribution": [
       {
         "name": "阿尔萨斯",
-        "value": 450
+        "value": 449
       },
       {
         "name": "死亡之翼",
@@ -440,7 +440,7 @@
     "genderDistribution": [
       {
         "name": "女",
-        "value": 391
+        "value": 390
       },
       {
         "name": "男",
@@ -456,9 +456,9 @@
         "realm": "阿尔萨斯",
         "class": "猎人",
         "spec": "野兽控制",
-        "achievement_points": 52255,
-        "average_item_level": 329.0,
-        "mythic_score": 3322.8
+        "achievement_points": 52280,
+        "average_item_level": 328.0,
+        "mythic_score": 3335.4
       },
       {
         "rank": 2,
@@ -498,7 +498,7 @@
         "spec": "神圣",
         "achievement_points": 45210,
         "average_item_level": 321.0,
-        "mythic_score": 3089.8
+        "mythic_score": 3114.4
       },
       {
         "rank": 6,
@@ -860,8 +860,8 @@
         "realm": "阿尔萨斯",
         "class": "法师",
         "spec": "奥术",
-        "achievement_points": 24815,
-        "average_item_level": 330.0,
+        "achievement_points": 24845,
+        "average_item_level": 331.0,
         "mythic_score": 3805.1
       },
       {
@@ -902,7 +902,7 @@
         "spec": "野兽控制",
         "achievement_points": 20010,
         "average_item_level": 331.0,
-        "mythic_score": 3561.4
+        "mythic_score": 3574.4
       },
       {
         "rank": 6,
@@ -926,6 +926,16 @@
       },
       {
         "rank": 8,
+        "name": "大灬不丶点",
+        "realm": "斯克提斯",
+        "class": "圣骑士",
+        "spec": "惩戒",
+        "achievement_points": 18135,
+        "average_item_level": 326.0,
+        "mythic_score": 3465.8
+      },
+      {
+        "rank": 9,
         "name": "寄八只羊",
         "realm": "阿莱克斯塔萨",
         "class": "术士",
@@ -935,7 +945,17 @@
         "mythic_score": 3451.9
       },
       {
-        "rank": 9,
+        "rank": 10,
+        "name": "白鯨儿",
+        "realm": "国王之谷",
+        "class": "圣骑士",
+        "spec": "神圣",
+        "achievement_points": 38875,
+        "average_item_level": 326.0,
+        "mythic_score": 3422.8
+      },
+      {
+        "rank": 11,
         "name": "丶念无",
         "realm": "阿尔萨斯",
         "class": "圣骑士",
@@ -943,26 +963,6 @@
         "achievement_points": 34370,
         "average_item_level": 319.0,
         "mythic_score": 3386.1
-      },
-      {
-        "rank": 10,
-        "name": "大灬不丶点",
-        "realm": "斯克提斯",
-        "class": "圣骑士",
-        "spec": "惩戒",
-        "achievement_points": 18135,
-        "average_item_level": 326.0,
-        "mythic_score": 3383.3
-      },
-      {
-        "rank": 11,
-        "name": "白鯨儿",
-        "realm": "国王之谷",
-        "class": "圣骑士",
-        "spec": "神圣",
-        "achievement_points": 38875,
-        "average_item_level": 325.0,
-        "mythic_score": 3378.3
       },
       {
         "rank": 12,
@@ -981,7 +981,7 @@
         "class": "萨满祭司",
         "spec": "恢复",
         "achievement_points": 26805,
-        "average_item_level": 329.0,
+        "average_item_level": 328.688,
         "mythic_score": 3366.7
       },
       {
@@ -992,7 +992,7 @@
         "spec": "复仇",
         "achievement_points": 37545,
         "average_item_level": 330.0,
-        "mythic_score": 3331.1
+        "mythic_score": 3360.6
       },
       {
         "rank": 15,
@@ -1000,9 +1000,9 @@
         "realm": "阿尔萨斯",
         "class": "猎人",
         "spec": "野兽控制",
-        "achievement_points": 52255,
-        "average_item_level": 329.0,
-        "mythic_score": 3322.8
+        "achievement_points": 52280,
+        "average_item_level": 328.0,
+        "mythic_score": 3335.4
       },
       {
         "rank": 16,
@@ -1058,10 +1058,10 @@
   },
   "meta": {
     "source": "raider.io",
-    "sourceRows": 725,
-    "uniqueCharacters": 725,
+    "sourceRows": 724,
+    "uniqueCharacters": 724,
     "duplicatesRemoved": 0,
-    "enriched": 725,
+    "enriched": 724,
     "guild": {
       "name": "一起",
       "displayName": null,
