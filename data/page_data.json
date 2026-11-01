@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-10-31 09:09:29",
-  "dataAsOf": "2026-10-31",
+  "lastUpdated": "2026-11-01 09:58:00",
+  "dataAsOf": "2026-11-01",
   "stats": {
     "totalMembers": 724,
     "activeMembers": 698,
     "activeWindow": {
       "days": 30,
-      "since": "2026-10-01",
-      "latest": "2026-10-31",
+      "since": "2026-10-02",
+      "latest": "2026-11-01",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
@@ -475,9 +475,9 @@
         "name": "风剑的荣耀",
         "realm": "阿尔萨斯",
         "class": "战士",
-        "spec": "防护",
-        "achievement_points": 46335,
-        "average_item_level": 317.0,
+        "spec": "武器",
+        "achievement_points": 46340,
+        "average_item_level": 323.0,
         "mythic_score": 0.0
       },
       {
@@ -497,8 +497,8 @@
         "class": "圣骑士",
         "spec": "神圣",
         "achievement_points": 45210,
-        "average_item_level": 321.0,
-        "mythic_score": 3114.4
+        "average_item_level": 320.0,
+        "mythic_score": 3148.9
       },
       {
         "rank": 6,
@@ -597,7 +597,7 @@
         "class": "圣骑士",
         "spec": "惩戒",
         "achievement_points": 43080,
-        "average_item_level": 325.0,
+        "average_item_level": 326.0,
         "mythic_score": 2654.0
       },
       {
@@ -870,7 +870,7 @@
         "realm": "白银之手",
         "class": "法师",
         "spec": "奥术",
-        "achievement_points": 17055,
+        "achievement_points": 17065,
         "average_item_level": 332.0,
         "mythic_score": 3680.0
       },
@@ -886,6 +886,16 @@
       },
       {
         "rank": 4,
+        "name": "嫂子先主动的",
+        "realm": "阿尔萨斯",
+        "class": "猎人",
+        "spec": "野兽控制",
+        "achievement_points": 20010,
+        "average_item_level": 334.0,
+        "mythic_score": 3629.4
+      },
+      {
+        "rank": 5,
         "name": "白鯨",
         "realm": "国王之谷",
         "class": "牧师",
@@ -893,16 +903,6 @@
         "achievement_points": 38875,
         "average_item_level": 327.0,
         "mythic_score": 3620.0
-      },
-      {
-        "rank": 5,
-        "name": "嫂子先主动的",
-        "realm": "阿尔萨斯",
-        "class": "猎人",
-        "spec": "野兽控制",
-        "achievement_points": 20010,
-        "average_item_level": 334.0,
-        "mythic_score": 3599.7
       },
       {
         "rank": 6,
@@ -949,8 +949,8 @@
         "name": "圆溜溜儿丶",
         "realm": "国王之谷",
         "class": "萨满祭司",
-        "spec": "恢复",
-        "achievement_points": 26815,
+        "spec": "元素",
+        "achievement_points": 26820,
         "average_item_level": 331.0,
         "mythic_score": 3430.7
       },
