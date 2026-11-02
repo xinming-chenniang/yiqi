@@ -3,16 +3,16 @@
  *
  * 专精图标与职业信息统一见 specs.js，此处只保留层级与元数据。
  * 来源: https://www.wowhead.com/cn/guide/classes/tier-lists/healer-rankings-raids
- * 更新: 2026/10/26
+ * 更新: 2026/11/02
  *
  * 由 tools/fetch_tier_lists.py 自动生成，请勿手改。
  */
 
 const healerTierList = {
   "title": "Healer Raid Rankings - Tier List for Midnight Season 2",
-  "source": "Korimae",
-  "lastUpdated": "2026/10/26",
-  "fetchedAt": "2026/10/26",
+  "source": "Wowhead",
+  "lastUpdated": "2026/11/02",
+  "fetchedAt": "2026/11/02",
   "sourceUrl": "https://www.wowhead.com/cn/guide/classes/tier-lists/healer-rankings-raids",
   "tiers": {
     "S": {
@@ -31,6 +31,7 @@ const healerTierList = {
       "name": "A",
       "description": "",
       "specs": [
+        "druid|恢复",
         "priest|戒律",
         "priest|神圣",
         "shaman|恢复"
@@ -41,7 +42,6 @@ const healerTierList = {
       "description": "",
       "specs": [
         "paladin|神圣",
-        "druid|恢复",
         "monk|织雾"
       ]
     },
