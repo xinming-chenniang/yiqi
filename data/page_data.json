@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-11-02 10:20:40",
-  "dataAsOf": "2026-11-02",
+  "lastUpdated": "2026-11-03 10:22:40",
+  "dataAsOf": "2026-11-03",
   "stats": {
     "totalMembers": 724,
     "activeMembers": 698,
     "activeWindow": {
       "days": 30,
-      "since": "2026-10-03",
-      "latest": "2026-11-02",
+      "since": "2026-10-04",
+      "latest": "2026-11-03",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
@@ -595,9 +595,9 @@
         "name": "丧彪小公举",
         "realm": "阿尔萨斯",
         "class": "圣骑士",
-        "spec": "惩戒",
+        "spec": "防护",
         "achievement_points": 43080,
-        "average_item_level": 326.0,
+        "average_item_level": 328.0,
         "mythic_score": 2654.0
       },
       {
@@ -607,37 +607,37 @@
         "class": "猎人",
         "spec": "野兽控制",
         "achievement_points": 43080,
-        "average_item_level": 329.0,
+        "average_item_level": 331.0,
         "mythic_score": 2602.2
       },
       {
         "rank": 17,
+        "name": "污丫",
+        "realm": "阿尔萨斯",
+        "class": "恶魔猎手",
+        "spec": "浩劫",
+        "achievement_points": 43080,
+        "average_item_level": 276.0,
+        "mythic_score": 0.0
+      },
+      {
+        "rank": 18,
+        "name": "燒丫",
+        "realm": "阿尔萨斯",
+        "class": "术士",
+        "spec": "毁灭",
+        "achievement_points": 43080,
+        "average_item_level": 282.0,
+        "mythic_score": 0.0
+      },
+      {
+        "rank": 19,
         "name": "反帝",
         "realm": "阿尔萨斯",
         "class": "战士",
         "spec": "狂怒",
         "achievement_points": 43070,
         "average_item_level": 277.0,
-        "mythic_score": 0.0
-      },
-      {
-        "rank": 18,
-        "name": "污丫",
-        "realm": "阿尔萨斯",
-        "class": "恶魔猎手",
-        "spec": "浩劫",
-        "achievement_points": 43070,
-        "average_item_level": 276.0,
-        "mythic_score": 0.0
-      },
-      {
-        "rank": 19,
-        "name": "燒丫",
-        "realm": "阿尔萨斯",
-        "class": "术士",
-        "spec": "毁灭",
-        "achievement_points": 43070,
-        "average_item_level": 282.0,
         "mythic_score": 0.0
       },
       {
@@ -870,9 +870,9 @@
         "realm": "白银之手",
         "class": "法师",
         "spec": "奥术",
-        "achievement_points": 17075,
+        "achievement_points": 17085,
         "average_item_level": 332.0,
-        "mythic_score": 3694.9
+        "mythic_score": 3712.5
       },
       {
         "rank": 3,
@@ -892,7 +892,7 @@
         "spec": "野兽控制",
         "achievement_points": 20010,
         "average_item_level": 334.0,
-        "mythic_score": 3629.4
+        "mythic_score": 3644.0
       },
       {
         "rank": 5,
@@ -906,23 +906,23 @@
       },
       {
         "rank": 6,
-        "name": "大灬不丶点",
-        "realm": "斯克提斯",
-        "class": "圣骑士",
-        "spec": "惩戒",
-        "achievement_points": 18135,
-        "average_item_level": 328.0,
-        "mythic_score": 3498.6
-      },
-      {
-        "rank": 7,
         "name": "拖拖米",
         "realm": "阿尔萨斯",
         "class": "圣骑士",
         "spec": "防护",
         "achievement_points": 31695,
         "average_item_level": 329.938,
-        "mythic_score": 3494.8
+        "mythic_score": 3568.5
+      },
+      {
+        "rank": 7,
+        "name": "白鯨儿",
+        "realm": "国王之谷",
+        "class": "圣骑士",
+        "spec": "神圣",
+        "achievement_points": 38875,
+        "average_item_level": 328.0,
+        "mythic_score": 3515.6
       },
       {
         "rank": 8,
@@ -932,17 +932,17 @@
         "spec": "敏锐",
         "achievement_points": 33825,
         "average_item_level": 333.0,
-        "mythic_score": 3489.2
+        "mythic_score": 3513.1
       },
       {
         "rank": 9,
-        "name": "白鯨儿",
-        "realm": "国王之谷",
+        "name": "大灬不丶点",
+        "realm": "斯克提斯",
         "class": "圣骑士",
-        "spec": "神圣",
-        "achievement_points": 38875,
-        "average_item_level": 328.0,
-        "mythic_score": 3455.0
+        "spec": "惩戒",
+        "achievement_points": 18135,
+        "average_item_level": 329.0,
+        "mythic_score": 3504.0
       },
       {
         "rank": 10,
@@ -1016,6 +1016,16 @@
       },
       {
         "rank": 17,
+        "name": "奥酥宝猪",
+        "realm": "阿尔萨斯",
+        "class": "法师",
+        "spec": "奥术",
+        "achievement_points": 17535,
+        "average_item_level": 331.0,
+        "mythic_score": 3293.1
+      },
+      {
+        "rank": 18,
         "name": "Acg",
         "realm": "阿尔萨斯",
         "class": "法师",
@@ -1023,16 +1033,6 @@
         "achievement_points": 13570,
         "average_item_level": 327.0,
         "mythic_score": 3291.0
-      },
-      {
-        "rank": 18,
-        "name": "奥酥宝猪",
-        "realm": "阿尔萨斯",
-        "class": "法师",
-        "spec": "奥术",
-        "achievement_points": 17535,
-        "average_item_level": 331.0,
-        "mythic_score": 3251.4
       },
       {
         "rank": 19,
