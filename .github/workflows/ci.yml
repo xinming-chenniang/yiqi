@@ -12,10 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      # 测试线跟 LTS 走：Node 20 已于 2026-04 结束支持，不再在 EOL 运行时上跑测试。
+      # 线上实际运行版本由 netlify.toml 的 NODE_VERSION 决定（当前仍是 20）。
       - name: 安装 Node
         uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: 安装 Python
         uses: actions/setup-python@v6
