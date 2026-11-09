@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-09 10:41:11",
-  "dataAsOf": "2026-11-09",
+  "lastUpdated": "2026-11-09 19:55:41",
+  "dataAsOf": "2026-11-10",
   "stats": {
     "totalMembers": 723,
     "activeMembers": 697,
@@ -602,6 +602,16 @@
       },
       {
         "rank": 16,
+        "name": "反帝",
+        "realm": "阿尔萨斯",
+        "class": "战士",
+        "spec": "狂怒",
+        "achievement_points": 43095,
+        "average_item_level": 283.0,
+        "mythic_score": 0.0
+      },
+      {
+        "rank": 17,
         "name": "居仔",
         "realm": "阿尔萨斯",
         "class": "猎人",
@@ -611,7 +621,7 @@
         "mythic_score": 2602.2
       },
       {
-        "rank": 17,
+        "rank": 18,
         "name": "污丫",
         "realm": "阿尔萨斯",
         "class": "恶魔猎手",
@@ -621,7 +631,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 18,
+        "rank": 19,
         "name": "燒丫",
         "realm": "阿尔萨斯",
         "class": "术士",
@@ -631,23 +641,13 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 19,
-        "name": "萨丫",
-        "realm": "死亡之翼",
-        "class": "萨满祭司",
-        "spec": "元素",
-        "achievement_points": 43095,
-        "average_item_level": 294.0,
-        "mythic_score": 0.0
-      },
-      {
         "rank": 20,
-        "name": "反帝",
+        "name": "米路西",
         "realm": "阿尔萨斯",
-        "class": "战士",
-        "spec": "狂怒",
-        "achievement_points": 43070,
-        "average_item_level": 277.0,
+        "class": "死亡骑士",
+        "spec": "冰霜",
+        "achievement_points": 43095,
+        "average_item_level": 287.0,
         "mythic_score": 0.0
       }
     ],
