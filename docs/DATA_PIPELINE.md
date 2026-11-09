@@ -204,7 +204,8 @@ Wowhead guide 页 ──fetch──▶ tools/fetch_tier_lists.py ──▶ js/da
 
 ### 为什么需要代理或阅读器
 
-`wowhead.com` 对部分地区出口直接返回 403（CloudFront 地区拦截；实测本机直连、香港出口均为 403）。
+`wowhead.com` 对部分地区出口直接返回 403（CloudFront 地区拦截；实测本机直连、香港出口均为 403；
+2026-11-09 的定时任务里 GitHub Runner 直连同样 403，`auto` 全程退回阅读器）。
 脚本取页方式三选一：
 
 | 方式 | 适用场景 | 说明 |
@@ -226,6 +227,14 @@ python tools/fetch_tier_lists.py --check
 
 退出码：`0` 一致；`1` 有差异（`--check`）；`2` `specs.js` 缺专精；`3` 抓取或解析失败。
 
+取页和解析各重试（`PARSE_ATTEMPTS = 3`，间隔 5 秒），全轮失败才返回 3。
+阅读器取不到页面时也回 HTTP 200：可能是正文前带一行 `Warning: … not yet fully loaded` 的空壳页，
+也可能是 404 页。这类情况按取页失败处理并重试，而不是报“页面结构变了”（判据见
+`validate_reader_payload`）。注意 wowhead 每个页面正文里都带隐藏的“举报广告”弹窗，
+正常页面也有这段文字，不能按它判死。
+失败时抓到的原文存成 `.cache/tier-lists/<key>.failed.md`，CI 作业失败时上传为 artifact
+（`tier-list-pages`），用来区分“页面改版”和“根本没抓到正文”。
+
 ### 解析口径
 
 - 优先取正文里的编号排名 `1.   Arms Warrior (A Tier)`；没有编号列表时退回
@@ -242,8 +251,9 @@ python tools/fetch_tier_lists.py --check
 ### 自动刷新
 
 `.github/workflows/tier-list-refresh.yml`：每周一 UTC 02:00（北京时间 10:00）执行一次。
-有差异才重新生成并提交到 `main`；抓取/解析失败则作业失败且不提交（宁可报警，不写坏数据）。
-提交前会再跑一遍 `node --test`，兜住“新专精没登记”的情况。
+一次运行只抓一遍：脚本先抓全 6 个页面、全部解析成功才写文件（两段式），一个页面抓坏就整批不写，
+作业失败且不提交（宁可报警，不写坏数据）。写盘后再跑 `node --test`（兜住“新专精没登记”），
+最后有差异才提交到 `main`。
 
 ### 注意
 

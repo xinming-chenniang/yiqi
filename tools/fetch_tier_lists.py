@@ -40,7 +40,7 @@ import time
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Callable, Dict, List, Optional
 
 import requests
 
@@ -58,6 +58,14 @@ USER_AGENT = (
     "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
 )
 READER_PREFIX = "https://r.jina.ai/"
+
+# 阅读器取不到页面时也回 HTTP 200，并在正文前的元数据里留一行 Warning
+# （“This page maybe not yet fully loaded, consider explicitly specify a timeout.”）。
+READER_WARNING_MARKER = "warning:"
+
+# 抓取 + 解析算一轮。限流、页面没渲染出来都是临时故障，重试几轮再判死。
+PARSE_ATTEMPTS = 3
+RETRY_SLEEP = 5
 
 TIER_ORDER = ["S", "A+", "A", "B", "C", "D", "F"]
 
@@ -120,6 +128,18 @@ LOG = logging.getLogger("tier-lists")
 
 class FetchError(RuntimeError):
     """取页失败（三种方式都没拿到内容）。"""
+
+
+class BadPayloadError(FetchError):
+    """取回了内容，但不是真正文（错误页 / 404 页 / 没渲染完）。
+
+    文本随异常带出去，落成 .cache/tier-lists/<key>.failed.md，失败时由 CI 上传成
+    artifact —— 没有这份原文，只能看到“解析出 0 个专精”，查不出是页面变了还是没抓到。
+    """
+
+    def __init__(self, message: str, text: str = "") -> None:
+        super().__init__(message)
+        self.text = text
 
 
 @dataclass
@@ -204,6 +224,28 @@ def http_get(session: requests.Session, url: str, timeout: int) -> str:
     raise FetchError(f"{url} → {last_error}")
 
 
+def validate_reader_payload(text: str, guide: Guide) -> None:
+    """确认阅读器拿回来的是真正的 guide 正文，不是它的空壳页 / 404 页。
+
+    只认阅读器写在元数据头里的 Warning 和标题：正文里出现 wowhead 的“举报广告”弹窗是
+    正常的（每个页面都带这个隐藏弹窗，实测 50KB 的正常页面里也有这段文字），
+    所以不能按正文里的字样判死 —— 没抓到正文的情况交给 parse_page 的“0 个专精”判定加整体重试。
+    """
+    marker = "Markdown Content:"
+    if marker not in text:
+        raise BadPayloadError(f"阅读器返回内容不含正文: {guide.url}", text)
+    header = text[: text.find(marker)]
+    for line in header.splitlines():
+        if line.strip().lower().startswith(READER_WARNING_MARKER):
+            raise BadPayloadError(f"阅读器报告取页失败（{line.strip()}）: {guide.url}", text)
+    title_match = TITLE_RE.search(header)
+    title = title_match.group(1).strip() if title_match else ""
+    if not title:
+        raise BadPayloadError(f"阅读器没回标题（页面没渲染出来）: {guide.url}", text)
+    if "page not found" in title.lower():
+        raise BadPayloadError(f"阅读器返回的是 404 页: {guide.url}", text)
+
+
 def fetch_guide(session: requests.Session, guide: Guide, route: str, timeout: int) -> str:
     """按 route 取页面原文；reader 模式拿到的是 r.jina.ai 的 markdown。"""
     if route in ("auto", "direct"):
@@ -214,8 +256,7 @@ def fetch_guide(session: requests.Session, guide: Guide, route: str, timeout: in
                 raise
             LOG.warning("直连失败（%s），改走阅读器", exc)
     text = http_get(session, READER_PREFIX + guide.url, timeout)
-    if "Markdown Content:" not in text:
-        raise FetchError(f"阅读器返回内容不含正文: {guide.url}")
+    validate_reader_payload(text, guide)
     return text
 
 
@@ -316,7 +357,7 @@ def parse_page(text: str, guide: Guide) -> ParsedPage:
 
     tiers = {key: value for key, value in tiers.items() if key in TIER_ORDER}
     if not any(tiers.values()):
-        raise ValueError(f"{guide.key}: 没解析出任何专精，页面结构可能变了")
+        raise ValueError(f"{guide.key}: 没解析出任何专精，可能是没抓到正文，也可能页面结构变了")
     if not title:
         title = guide.label
 
@@ -328,6 +369,39 @@ def parse_page(text: str, guide: Guide) -> ParsedPage:
         tiers=tiers,
         unknowns=unknowns,
     )
+
+
+def fetch_and_parse(
+    guide: Guide,
+    fetch_text: Callable[[], str],
+    attempts: int = PARSE_ATTEMPTS,
+    sleep: int = RETRY_SLEEP,
+    dump_path: Optional[Path] = None,
+) -> tuple:
+    """抓一轮 + 解析一轮；失败重试，全失败才抛。
+
+    为什么重试：2026-11-09 的定时任务里 6 个页面有 5 个正常，坦克那页解析出 0 个专精，
+    整个作业 exit 3 失败。阅读器偶尔会回没渲染完的空壳页（正文前留一行 Warning），
+    重抓一次多半就好；真有页面改版，重试几轮后照样失败报警。
+    """
+    last_error: Exception = ValueError(f"{guide.key}: 没有任何结果")
+    for attempt in range(1, attempts + 1):
+        text = ""
+        try:
+            text = fetch_text()
+            return parse_page(text, guide), text
+        except (FetchError, ValueError) as exc:
+            last_error = exc
+            # 取页失败时异常自带原文；解析失败时用这一轮抓到的正文
+            payload = getattr(exc, "text", "") or text
+            if dump_path is not None and payload:
+                dump_path.write_text(payload, encoding="utf-8")
+            if attempt < attempts:
+                LOG.warning(
+                    "%s: 第 %d/%d 轮失败（%s），%d 秒后重试", guide.key, attempt, attempts, exc, sleep
+                )
+                time.sleep(sleep)
+    raise FetchError(f"{guide.key}: {last_error}")
 
 
 def render_js(guide: Guide, page: ParsedPage) -> str:
@@ -391,52 +465,72 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 2
 
     session = None if args.offline else build_session(args.proxy)
-    results = []
-    exit_code = 0
+    # 两段式：先把 6 个页面全抓全解析，全都通过才落盘 —— 一个页面抓坏就不写半套数据，
+    # 也免得 CI 里检查一遍、生成时再抓一遍（阅读器免费额度就那么多）。
+    rendered = []  # [(guide, content, target, old)]
+    failed = 0
 
     for guide in GUIDES:
         if args.only and guide.key != args.only:
             continue
         cache_file = args.cache_dir / f"{guide.key}.md"
-        try:
+        failed_file = args.cache_dir / f"{guide.key}.failed.md"
+
+        def fetch_text(guide: Guide = guide, cache_file: Path = cache_file) -> str:
             if args.offline:
                 if not cache_file.exists():
                     raise FetchError(f"离线模式缺少缓存: {cache_file}")
-                text = cache_file.read_text(encoding="utf-8")
-            else:
-                assert session is not None
-                text = fetch_guide(session, guide, args.route, args.timeout)
-                cache_file.write_text(text, encoding="utf-8")
-                time.sleep(1.5)  # 阅读器免费额度限速，顺序请求留点间隔
-            page = parse_page(text, guide)
-        except (FetchError, ValueError) as exc:
-            LOG.error("%s: %s", guide.key, exc)
-            exit_code = max(exit_code, 3)
+                return cache_file.read_text(encoding="utf-8")
+            assert session is not None
+            text = fetch_guide(session, guide, args.route, args.timeout)
+            time.sleep(1.5)  # 阅读器免费额度限速，顺序请求留点间隔
+            return text
+
+        try:
+            page, text = fetch_and_parse(
+                guide,
+                fetch_text,
+                attempts=1 if args.offline else PARSE_ATTEMPTS,
+                dump_path=None if args.offline else failed_file,
+            )
+        except FetchError as exc:
+            LOG.error("%s", exc)
+            failed += 1
             continue
+
+        # 解析通过才写缓存：坏页面不能顶掉可离线重跑的原文（它另存为 .failed.md）。
+        if not args.offline:
+            cache_file.write_text(text, encoding="utf-8")
+            if failed_file.exists():
+                failed_file.unlink()
 
         for unknown in page.unknowns:
             LOG.warning("%s: 未登记专精 —— %s", guide.key, unknown)
         LOG.info("%s", summarize(guide, page))
 
-        content = render_js(guide, page)
         target = DATA_DIR / guide.out_file
         old = target.read_text(encoding="utf-8") if target.exists() else ""
+        rendered.append((guide, render_js(guide, page), target, old))
+
+    if failed:
+        LOG.error("有 %d 个天梯没抓到，本次不写任何文件（原文见 .cache/tier-lists/*.failed.md）", failed)
+        return 3
+    if not rendered:
+        LOG.error("没有任何数据生成")
+        return 3
+
+    exit_code = 0
+    for guide, content, target, old in rendered:
         if args.check:
             same = DATE_LINE_RE.sub("", old) == DATE_LINE_RE.sub("", content)
             LOG.info("  %s: %s", guide.out_file, "一致" if same else "有差异")
             if not same:
                 exit_code = max(exit_code, 1)
+        elif old != content:
+            target.write_text(content, encoding="utf-8")
+            LOG.info("  %s: 已更新", guide.out_file)
         else:
-            if old != content:
-                target.write_text(content, encoding="utf-8")
-                LOG.info("  %s: 已更新", guide.out_file)
-            else:
-                LOG.info("  %s: 无变化", guide.out_file)
-        results.append((guide, page))
-
-    if not results:
-        LOG.error("没有任何数据生成")
-        return 3
+            LOG.info("  %s: 无变化", guide.out_file)
     return exit_code
 
 

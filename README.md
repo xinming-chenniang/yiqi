@@ -127,7 +127,7 @@ python -m unittest discover -s tests/py -p "test_*.py"
 | `tests/py/test_stats.py` | 去重规则、活跃口径、完整率、排行榜排序（旧管线） |
 | `tests/py/test_build_page_data_rio.py` | RIO 口径：跨服同名不合并、字段合并、活跃并集、排行榜连续 |
 | `tests/py/test_fetch_guild_roster.py` | 职业 slug 映射、从 profile_url 取服务器 slug |
-| `tests/py/test_fetch_tier_lists.py` | 天梯解析：编号列表优先、分节回退、未登记专精报错、作者提取 |
+| `tests/py/test_fetch_tier_lists.py` | 天梯解析：编号列表优先、分节回退、未登记专精报错、作者提取、阅读器错误页识别与抓取重试 |
 
 CI 见 `.github/workflows/ci.yml`：推送到 `main` 或开 PR 时跑上述测试 + `tools/validate.py`；
 两个定时任务 `guild-stats-refresh.yml` / `tier-list-refresh.yml` 负责自动刷新数据（见 DATA_PIPELINE §11、§12）。

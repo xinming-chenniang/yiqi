@@ -1,8 +1,8 @@
 name: 天梯数据刷新
 
 # 定期从 Wowhead guide 抓取职业天梯，有变化就提交到 main。
-# 抓取脚本的三种取页方式见 tools/fetch_tier_lists.py 顶部说明；
-# GitHub Runner 在美国出口，正常情况下 direct 直连即可（本机则常被地区拦截，要用 --reader）。
+# 取页方式见 tools/fetch_tier_lists.py 顶部说明：2026-11-09 的定时任务里 runner 直连也被
+# CloudFront 403 挡住，auto 逐个退回 r.jina.ai 阅读器；阅读器偶尔回没渲染完的空壳页，脚本内部会重试。
 on:
   schedule:
     - cron: '0 2 * * 1'   # 每周一 UTC 02:00 = 北京时间 10:00
@@ -26,34 +26,17 @@ jobs:
       - name: 安装依赖
         run: pip install -r requirements.txt
 
-      - name: 检查是否有新数据
-        id: diff
-        run: |
-          set +e
-          python tools/fetch_tier_lists.py --check
-          code=$?
-          set -e
-          if [ "$code" -eq 0 ]; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          elif [ "$code" -eq 1 ]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "抓取或解析失败（退出码 $code），不做提交" >&2
-            exit "$code"
-          fi
-
-      - name: 重新生成数据
-        if: steps.diff.outputs.changed == 'true'
+      # 脚本先抓全 6 个页面、全部解析成功才写文件：失败退出码 3，不写半套数据。
+      # 以前是先 --check 再生成，同一批页面要抓两遍，阅读器额度翻倍。
+      - name: 抓取并生成
         run: python tools/fetch_tier_lists.py
 
       # 新专精没登记时脚本会直接失败，这里再让测试兜一层：
       # 天梯里的每个专精 id 都必须能在 specs.js 解析出来。
       - name: JS 测试
-        if: steps.diff.outputs.changed == 'true'
         run: node --test
 
       - name: 提交
-        if: steps.diff.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -64,3 +47,13 @@ jobs:
           fi
           git commit -m "data(tier): 自动更新职业天梯（Wowhead）"
           git push
+
+      # 「解析出 0 个专精」要能看出是页面改版还是根本没抓到正文，失败时把原文留一份。
+      - name: 失败时上传抓到的原文
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tier-list-pages
+          path: .cache/tier-lists
+          include-hidden-files: true
+          if-no-files-found: ignore
