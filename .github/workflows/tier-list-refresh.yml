@@ -16,10 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: 安装 Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
@@ -51,7 +51,7 @@ jobs:
       # 「解析出 0 个专精」要能看出是页面改版还是根本没抓到正文，失败时把原文留一份。
       - name: 失败时上传抓到的原文
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: tier-list-pages
           path: .cache/tier-lists
