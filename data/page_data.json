@@ -1,17 +1,17 @@
 {
-  "lastUpdated": "2026-11-13 10:20:54",
-  "dataAsOf": "2026-11-13",
+  "lastUpdated": "2026-11-14 09:41:21",
+  "dataAsOf": "2026-11-14",
   "stats": {
     "totalMembers": 722,
     "activeMembers": 696,
     "activeWindow": {
       "days": 30,
-      "since": "2026-10-14",
-      "latest": "2026-11-13",
+      "since": "2026-10-15",
+      "latest": "2026-11-14",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
-      "mplusActive": 79
+      "mplusActive": 80
     },
     "dataCompleteness": {
       "total": 722,
@@ -872,7 +872,7 @@
         "spec": "神圣",
         "achievement_points": 38895,
         "average_item_level": 332.0,
-        "mythic_score": 3754.8
+        "mythic_score": 3781.8
       },
       {
         "rank": 3,
