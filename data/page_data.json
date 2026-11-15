@@ -1,6 +1,6 @@
 {
-  "lastUpdated": "2026-11-14 09:41:21",
-  "dataAsOf": "2026-11-14",
+  "lastUpdated": "2026-11-15 10:10:07",
+  "dataAsOf": "2026-11-15",
   "stats": {
     "totalMembers": 722,
     "activeMembers": 696,
@@ -466,8 +466,8 @@
         "realm": "阿尔萨斯",
         "class": "牧师",
         "spec": "暗影",
-        "achievement_points": 51730,
-        "average_item_level": 214.0,
+        "achievement_points": 51750,
+        "average_item_level": 220.0,
         "mythic_score": 0.0
       },
       {
@@ -482,6 +482,16 @@
       },
       {
         "rank": 4,
+        "name": "情让人伤神",
+        "realm": "燃烧之刃",
+        "class": "圣骑士",
+        "spec": "神圣",
+        "achievement_points": 45230,
+        "average_item_level": 327.0,
+        "mythic_score": 3750.3
+      },
+      {
+        "rank": 5,
         "name": "包啤过长是桃",
         "realm": "燃烧之刃",
         "class": "战士",
@@ -491,7 +501,7 @@
         "mythic_score": 2652.7
       },
       {
-        "rank": 5,
+        "rank": 6,
         "name": "姬博应",
         "realm": "踏梦者",
         "class": "萨满祭司",
@@ -499,16 +509,6 @@
         "achievement_points": 45210,
         "average_item_level": 311.0,
         "mythic_score": 2910.5
-      },
-      {
-        "rank": 6,
-        "name": "情让人伤神",
-        "realm": "燃烧之刃",
-        "class": "圣骑士",
-        "spec": "神圣",
-        "achievement_points": 45210,
-        "average_item_level": 327.0,
-        "mythic_score": 3724.8
       },
       {
         "rank": 7,
@@ -585,9 +585,9 @@
         "name": "Ruling",
         "realm": "阿尔萨斯",
         "class": "圣骑士",
-        "spec": "神圣",
+        "spec": "惩戒",
         "achievement_points": 43645,
-        "average_item_level": 330.0,
+        "average_item_level": 335.0,
         "mythic_score": 3009.5
       },
       {
@@ -597,7 +597,7 @@
         "class": "圣骑士",
         "spec": "惩戒",
         "achievement_points": 43095,
-        "average_item_level": 333.0,
+        "average_item_level": 334.0,
         "mythic_score": 2654.0
       },
       {
@@ -622,6 +622,16 @@
       },
       {
         "rank": 18,
+        "name": "弑丫",
+        "realm": "阿尔萨斯",
+        "class": "潜行者",
+        "spec": "狂徒",
+        "achievement_points": 43095,
+        "average_item_level": 269.0,
+        "mythic_score": 0.0
+      },
+      {
+        "rank": 19,
         "name": "污丫",
         "realm": "阿尔萨斯",
         "class": "恶魔猎手",
@@ -631,21 +641,11 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 19,
+        "rank": 20,
         "name": "燒丫",
         "realm": "阿尔萨斯",
         "class": "术士",
         "spec": "毁灭",
-        "achievement_points": 43095,
-        "average_item_level": 287.0,
-        "mythic_score": 0.0
-      },
-      {
-        "rank": 20,
-        "name": "米路西",
-        "realm": "阿尔萨斯",
-        "class": "死亡骑士",
-        "spec": "冰霜",
         "achievement_points": 43095,
         "average_item_level": 287.0,
         "mythic_score": 0.0
@@ -872,7 +872,7 @@
         "spec": "神圣",
         "achievement_points": 38895,
         "average_item_level": 332.0,
-        "mythic_score": 3781.8
+        "mythic_score": 3796.5
       },
       {
         "rank": 3,
@@ -880,9 +880,9 @@
         "realm": "燃烧之刃",
         "class": "圣骑士",
         "spec": "神圣",
-        "achievement_points": 45210,
+        "achievement_points": 45230,
         "average_item_level": 327.0,
-        "mythic_score": 3724.8
+        "mythic_score": 3750.3
       },
       {
         "rank": 4,
@@ -969,9 +969,9 @@
         "name": "月影之力",
         "realm": "阿尔萨斯",
         "class": "恶魔猎手",
-        "spec": "复仇",
+        "spec": "浩劫",
         "achievement_points": 37575,
-        "average_item_level": 331.0,
+        "average_item_level": 332.0,
         "mythic_score": 3449.0
       },
       {
@@ -979,9 +979,9 @@
         "name": "圆溜溜儿丶",
         "realm": "国王之谷",
         "class": "萨满祭司",
-        "spec": "元素",
+        "spec": "恢复",
         "achievement_points": 26890,
-        "average_item_level": 332.0,
+        "average_item_level": 333.0,
         "mythic_score": 3430.7
       },
       {
