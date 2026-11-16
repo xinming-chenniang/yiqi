@@ -89,7 +89,7 @@ git show <旧 sha>:requirements.txt  > requirements.txt        # 只回依赖
 2. **RIO 会限速**：`--enrich` 724 人实测约 20 分钟，别以为卡死了；`--limit 20` 可以小批量先试。
 3. **`requirements.txt` 必须是纯 ASCII**：pip 在中文 Windows 上按 cp936 解码该文件，中文注释会让 `pip install -r` 直接崩。
 4. **`.cache/` 是缓存，别删**：`tier-lists/`（抓下来的原始页面）与 `guild-roster/`（名单快照）能让重跑不联网。截图不放这里了，去 `docs/preview/`。
-5. **H6/H7 攻略是 11.1「解放安德麦」的内容**，页面没有版本标注，当前版本是 12.1 —— 见第 8 节待办。
+5. **H6/H7 攻略是 11.1「解放安德麦」的内容**，已从导航收起、挪到 `pages/archive/`（只从「其他」页 `pages/other.html` 进），版本仍是旧的 —— 见第 8 节待办。
 6. **两条服务器名存疑**：`holy-chanter=神圣之歌`、`dreamwalker=踏梦者`，已在代码里标 `# 待游戏内核实`。
 7. **CSP 白名单**：新增图片/字体域名要同步改 `netlify.toml` 的 `img-src` / `font-src`，否则线上静默不显示。
 8. **不要让 prettier 碰 `js/data/*-tier-list.js`**：已加入 `.prettierignore`，否则生成器会一直被格式化差异打回。
@@ -119,7 +119,7 @@ python tools/validate.py --strict  # 产物与新鲜度
 
 ## 9. 当前待办（2026-10-24）
 
-1. H6/H7 攻略加版本横幅（11.1 归档），导航改名，RaidPlan 链接的 `raid=wow.undermine` 参数更新。
+1. ~~H6/H7 攻略加版本横幅、导航改名~~ ✅ 2026-11-16：挪到 `pages/archive/`，从导航收起，入口收进「其他」页。剩下 RaidPlan 链接的 `raid=wow.undermine` 参数待更新。
 2. WCL 页显示「最后一条报告日期」，过期时提示。
 3. `holy-chanter` / `dreamwalker` 两条服务器名游戏内核实后摘掉标记。
 4. RIO 覆盖率与真实在会人数的差额——需要登录态英雄榜或游戏内名单对照。

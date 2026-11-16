@@ -363,7 +363,7 @@ rg -n "specIcon:" js/data/            # 期望：仅 specs.js
 | `pages/gallery.html` | 上传成功→描述保留→刷新后仍在；上传第 11 张后仍可见；灯箱左右切换正常 |
 | `pages/wcl.html` | 表格加载；刷新按钮转圈后恢复；错误态有兜底 |
 | `pages/class-colors.html` | 13 个职业色块与 `variables.css` 一致；复制按钮可用 |
-| `pages/H6.html` / `H7.html` | 图片可点开放大并左右切换 |
+| `pages/archive/H6.html` / `H7.html` | 图片可点开放大并左右切换 |
 | 导航 | 从首页与从子页进入，链接均可达 |
 | 移动端 | 375px 宽度下无横向滚动，导航可展开 |
 

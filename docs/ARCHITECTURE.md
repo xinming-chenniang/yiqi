@@ -11,7 +11,8 @@
 | `pages/gallery.html` | — | `ImageUploader`、`ImageModal` |
 | `pages/wcl.html` | — | `WCLDataLoader` |
 | `pages/class-colors.html` | `js/pages/class-colors.js` | `ClassColorPalette` + `main.js` 的通用逻辑 |
-| `pages/H6.html` / `H7.html` | — | `ImageModal`（图片放大） |
+| `pages/other.html` | — | `main.js` 的通用逻辑（归档入口：旧攻略与公会视频） |
+| `pages/archive/H6.html` / `H7.html` | — | `ImageModal`（图片放大；只从「其他」页进入） |
 
 > 页面里不要再写静态 `<footer class="footer-container">`：footer 由 `components/footer.js` 统一追加，重复会生成两个节点。
 

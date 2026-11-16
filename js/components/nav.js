@@ -5,14 +5,16 @@
  * 移动端（≤768px）：折叠为「菜单」按钮，展开后纵向排列，下拉改为手风琴。
  */
 
+import { sitePrefix } from '../core/paths.js';
+
 const MENU_MEDIA_QUERY = '(min-width: 769px)';
 
 export function loadNavigation() {
-  const isInPages = window.location.pathname.includes('/pages/');
+  const prefix = sitePrefix();
 
-  const homePath = isInPages ? '../index.html' : 'index.html';
-  const pagesPath = isInPages ? '' : 'pages/';
-  const imgPath = isInPages ? '../img/nav/wcl.png' : 'img/nav/wcl.png';
+  const homePath = `${prefix}index.html`;
+  const pagesPath = `${prefix}pages/`;
+  const imgPath = `${prefix}img/nav/wcl.png`;
 
   const navHTML = `
     <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="打开菜单">
@@ -63,27 +65,10 @@ export function loadNavigation() {
         </div>
       </li>
 
-      <li class="dropdown">
-        <button type="button" class="dropbtn" aria-expanded="false" aria-controls="nav-menu-strategy">
-          战术攻略 <span class="dropbtn-caret" aria-hidden="true">▼</span>
-        </button>
-        <div class="dropdown-content" id="nav-menu-strategy">
-          <a href="${pagesPath}H6.html" target="_blank" rel="noopener" class="dropdown-item">
-            <div class="dropdown-text">
-              <span class="dropdown-title">H6 独臂盗匪</span>
-            </div>
-          </a>
-          <a href="${pagesPath}H7.html" target="_blank" rel="noopener" class="dropdown-item">
-            <div class="dropdown-text">
-              <span class="dropdown-title">H7 穆格·兹伊</span>
-            </div>
-          </a>
-        </div>
-      </li>
-
       <li><a href="${pagesPath}gallery.html">公会画廊</a></li>
       <li><a href="${pagesPath}all-rankings.html">职业排名</a></li>
       <li><a href="${pagesPath}wcl.html">开荒记录</a></li>
+      <li><a href="${pagesPath}other.html">其他</a></li>
     </ul>
   `;
 

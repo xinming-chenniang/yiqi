@@ -1,12 +1,13 @@
 /**
  * 页头组件
  *
- * 路径判断与 nav.js 保持一致：不依赖「`..` 超出根会被浏览器钳制」这一隐式行为。
+ * 资源路径按当前页面的目录层数算（js/core/paths.js），归档页在 pages/archive/ 下也成立。
  */
 
+import { sitePrefix } from '../core/paths.js';
+
 export function loadHeader() {
-  const isInPages = window.location.pathname.includes('/pages/');
-  const logoPath = isInPages ? '../img/header-logo.webp' : 'img/header-logo.webp';
+  const logoPath = `${sitePrefix()}img/header-logo.webp`;
 
   const headerHTML = `
       <div class="header-content">
