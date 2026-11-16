@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-11-15 10:10:07",
-  "dataAsOf": "2026-11-15",
+  "lastUpdated": "2026-11-16 10:25:42",
+  "dataAsOf": "2026-11-16",
   "stats": {
     "totalMembers": 722,
     "activeMembers": 696,
     "activeWindow": {
       "days": 30,
-      "since": "2026-10-15",
-      "latest": "2026-11-14",
+      "since": "2026-10-17",
+      "latest": "2026-11-16",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
@@ -487,8 +487,8 @@
         "class": "圣骑士",
         "spec": "神圣",
         "achievement_points": 45230,
-        "average_item_level": 327.0,
-        "mythic_score": 3750.3
+        "average_item_level": 328.0,
+        "mythic_score": 3782.3
       },
       {
         "rank": 5,
@@ -856,6 +856,16 @@
     "mythicScoreRanking": [
       {
         "rank": 1,
+        "name": "白鯨儿",
+        "realm": "国王之谷",
+        "class": "圣骑士",
+        "spec": "神圣",
+        "achievement_points": 38895,
+        "average_item_level": 333.0,
+        "mythic_score": 3810.8
+      },
+      {
+        "rank": 2,
         "name": "戎卷风",
         "realm": "阿尔萨斯",
         "class": "法师",
@@ -865,24 +875,14 @@
         "mythic_score": 3805.1
       },
       {
-        "rank": 2,
-        "name": "白鯨儿",
-        "realm": "国王之谷",
-        "class": "圣骑士",
-        "spec": "神圣",
-        "achievement_points": 38895,
-        "average_item_level": 332.0,
-        "mythic_score": 3796.5
-      },
-      {
         "rank": 3,
         "name": "情让人伤神",
         "realm": "燃烧之刃",
         "class": "圣骑士",
         "spec": "神圣",
         "achievement_points": 45230,
-        "average_item_level": 327.0,
-        "mythic_score": 3750.3
+        "average_item_level": 328.0,
+        "mythic_score": 3782.3
       },
       {
         "rank": 4,
@@ -930,8 +930,8 @@
         "realm": "斯克提斯",
         "class": "圣骑士",
         "spec": "惩戒",
-        "achievement_points": 18135,
-        "average_item_level": 328.0,
+        "achievement_points": 18145,
+        "average_item_level": 331.0,
         "mythic_score": 3518.5
       },
       {
