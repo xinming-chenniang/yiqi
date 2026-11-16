@@ -20,12 +20,12 @@
 用法：
     python tools/fetch_tier_lists.py                     # 抓取并写入 6 份数据
     python tools/fetch_tier_lists.py --check             # 只比对，有差异时退出码 1
-    python tools/fetch_tier_lists.py --reader            # 强制走阅读器
+    python tools/fetch_tier_lists.py --route reader      # 强制走阅读器
     python tools/fetch_tier_lists.py --offline           # 只用 .cache/tier-lists 里的原文
     python tools/fetch_tier_lists.py --proxy http://127.0.0.1:15236
 
     # 本机典型用法（直连 403，系统代理在国内可用）
-    python tools/fetch_tier_lists.py --reader --proxy http://127.0.0.1:15236
+    python tools/fetch_tier_lists.py --route reader --proxy http://127.0.0.1:15236
 """
 
 from __future__ import annotations
@@ -41,6 +41,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Callable, Dict, List, Optional
+from urllib.parse import urlparse
 
 import requests
 
@@ -62,6 +63,16 @@ READER_PREFIX = "https://r.jina.ai/"
 # 阅读器取不到页面时也回 HTTP 200，并在正文前的元数据里留一行 Warning
 # （“This page maybe not yet fully loaded, consider explicitly specify a timeout.”）。
 READER_WARNING_MARKER = "warning:"
+
+# 不走阅读器的缓存：它缓存的是“上次渲染结果”，包括渲染失败的那次。
+# 2026-11-16 定时任务就是这样栽的 —— jina 对 wowhead 的匿名抓取被限流后，坦克页三次都回
+# 缓存里的广告跳转页（Final URL 是 s.amazon-adsystem.com，正文只有一行 1x1 追踪像素），
+# Warning 也正是它自己提示的 “cached snapshot … consider retry with caching opt-out”。
+READER_HEADERS = {"X-No-Cache": "true"}
+
+# 阅读器正常取页时 Final URL 就是 wowhead 原地址；跳到站外说明跟进了广告/追踪跳转。
+FINAL_URL_RE = re.compile(r"(?m)^Final URL:\s*(\S+)\s*$")
+READER_HOST_SUFFIX = "wowhead.com"
 
 # 抓取 + 解析算一轮。限流、页面没渲染出来都是临时故障，重试几轮再判死。
 PARSE_ATTEMPTS = 3
@@ -206,18 +217,21 @@ def build_session(proxy: Optional[str]) -> requests.Session:
     return session
 
 
-def http_get(session: requests.Session, url: str, timeout: int) -> str:
+def http_get(session: requests.Session, url: str, timeout: int, headers: Optional[dict] = None) -> str:
     """带重试的 GET，返回正文文本；失败抛 FetchError。"""
     last_error = "未知错误"
     for attempt in range(1, 4):
         try:
-            response = session.get(url, timeout=timeout)
+            response = session.get(url, timeout=timeout, headers=headers)
         except requests.RequestException as exc:  # 网络层失败，重试
             last_error = f"{type(exc).__name__}: {exc}"
         else:
             if response.status_code == 200 and response.text.strip():
                 return response.text
-            last_error = f"HTTP {response.status_code}"
+            # 阅读器把限流原因写在 JSON 正文里（jina 的 AbuseAlleviationError），
+            # 只报 “HTTP 403” 的话 CI 日志看不出是被谁挡的。
+            detail = re.sub(r"\s+", " ", response.text or "").strip()[:300]
+            last_error = f"HTTP {response.status_code}" + (f": {detail}" if detail else "")
             if response.status_code in (403, 404):
                 break
         time.sleep(attempt * 2)
@@ -225,9 +239,9 @@ def http_get(session: requests.Session, url: str, timeout: int) -> str:
 
 
 def validate_reader_payload(text: str, guide: Guide) -> None:
-    """确认阅读器拿回来的是真正的 guide 正文，不是它的空壳页 / 404 页。
+    """确认阅读器拿回来的是真正的 guide 正文，不是它的空壳页 / 404 页 / 广告跳转页。
 
-    只认阅读器写在元数据头里的 Warning 和标题：正文里出现 wowhead 的“举报广告”弹窗是
+    只认阅读器写在元数据头里的 Warning、Final URL 和标题：正文里出现 wowhead 的“举报广告”弹窗是
     正常的（每个页面都带这个隐藏弹窗，实测 50KB 的正常页面里也有这段文字），
     所以不能按正文里的字样判死 —— 没抓到正文的情况交给 parse_page 的“0 个专精”判定加整体重试。
     """
@@ -235,6 +249,13 @@ def validate_reader_payload(text: str, guide: Guide) -> None:
     if marker not in text:
         raise BadPayloadError(f"阅读器返回内容不含正文: {guide.url}", text)
     header = text[: text.find(marker)]
+    final_match = FINAL_URL_RE.search(header)
+    if final_match:
+        host = (urlparse(final_match.group(1)).hostname or "").lower()
+        if host != READER_HOST_SUFFIX and not host.endswith("." + READER_HOST_SUFFIX):
+            raise BadPayloadError(
+                f"阅读器跟到了站外页面（{host or '无主机名'}）: {guide.url}", text
+            )
     for line in header.splitlines():
         if line.strip().lower().startswith(READER_WARNING_MARKER):
             raise BadPayloadError(f"阅读器报告取页失败（{line.strip()}）: {guide.url}", text)
@@ -255,7 +276,7 @@ def fetch_guide(session: requests.Session, guide: Guide, route: str, timeout: in
             if route == "direct":
                 raise
             LOG.warning("直连失败（%s），改走阅读器", exc)
-    text = http_get(session, READER_PREFIX + guide.url, timeout)
+    text = http_get(session, READER_PREFIX + guide.url, timeout, READER_HEADERS)
     validate_reader_payload(text, guide)
     return text
 

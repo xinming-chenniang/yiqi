@@ -22,6 +22,13 @@
    或 404 页。所以别把它"简化"成只查 `Markdown Content:`；正文里的"举报广告"弹窗是正常页面自带的，
    不能按它判死；取页失败要重试（判据见 `validate_reader_payload` / `fetch_and_parse`，
    来历是 2026-11-09 那次整周天梯没刷新的事故）。
+   **阅读器请求必须带 `X-No-Cache: true`**（2026-11-16 加）：它的缓存存的是"上次渲染结果"，
+   连渲染失败的那次一起存。那天 wowhead 的匿名抓取被 jina 限流（DDoS 防护）后，坦克页三次重试
+   拿到的都是同一条缓存：广告跳转页（`Final URL: s.amazon-adsystem.com`，正文只有一行
+   1x1 追踪像素）。Warning（`cached snapshot … consider retry with caching opt-out`）确实拦住了它，
+   但**不带这个头时重试等于原地打转**，三次重试只是一次。另外 `validate_reader_payload` 现在要求
+   `Final URL` 落在 `wowhead.com`：**没有 Warning 的站外页**旧代码会当正常正文放行（已用旧版复现），
+   现在直接判取页失败。
 6. **`.cache/tier-lists/` 是离线重跑缓存，别删**：改解析逻辑用 `--offline` 复跑，不联网；
    旁边的 `*.failed.md` 是最近一次失败抓到的原文，CI 作业失败时会作为 artifact 上传。
 7. **CSP 白名单在 `netlify.toml`**：新增外部图片 / 脚本 / 字体域名要同时改对应 `*-src`，

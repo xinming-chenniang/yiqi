@@ -89,6 +89,20 @@ Markdown Content:
 Sorry, we couldn't find that page.
 """
 
+# 2026-11-16 定时任务里坦克页的真实失败产物：wowhead 的匿名抓取被限流后，
+# 阅读器把缓存里的广告跳转页当正文返回（标题是跳转目标，正文只有一行 1x1 追踪像素）。
+AD_REDIRECT_PAGE = """Title: https://s.amazon-adsystem.com/iui3
+
+URL Source: https://www.wowhead.com/cn/guide/classes/tier-lists/tank-rankings-mythic-plus
+
+Final URL: https://s.amazon-adsystem.com/iui3?pid=a30f442a-e833-4300-a302-987199caf562&dcc=t
+
+Warning: This is a cached snapshot of the original page, consider retry with caching opt-out.
+
+Markdown Content:
+A 1x1 image, likely be a tacker probe
+"""
+
 
 class NumberedListTest(unittest.TestCase):
     def test_编号列表优先且支持A_加档(self):
@@ -174,11 +188,57 @@ class ReaderPayloadTest(unittest.TestCase):
         with self.assertRaises(ftl.BadPayloadError):
             ftl.validate_reader_payload(NOT_FOUND_PAGE, GUIDE)
 
+    def test_跳到站外广告页当成取页失败(self):
+        with self.assertRaises(ftl.BadPayloadError) as ctx:
+            ftl.validate_reader_payload(AD_REDIRECT_PAGE, GUIDE)
+        self.assertIn("站外", str(ctx.exception))
+        self.assertIn("s.amazon-adsystem.com", str(ctx.exception))
+
+    def test_Final_URL是wowhead时正常通过(self):
+        text = "Title: x\nFinal URL: https://www.wowhead.com/cn/guide/classes/tier-lists/x\n" + \
+               "Markdown Content:\n正文"
+        ftl.validate_reader_payload(text, GUIDE)
+
     def test_正文里的举报广告弹窗不算错误页(self):
         # 实测正常页面 50KB 也含这段文字，按字样判死会把好页面全判成失败
         text = NUMBERED_PAGE + "\n## Why are you reporting this ad?\n\nPlease make a selection.\n"
         ftl.validate_reader_payload(text, GUIDE)
         self.assertEqual(len(ftl.parse_page(text, GUIDE).tiers["B"]), 1)
+
+
+class FakeResponse:
+    def __init__(self, status_code, text):
+        self.status_code = status_code
+        self.text = text
+
+
+class HttpGetTest(unittest.TestCase):
+    """取页层的两件事：阅读器请求要带绕过缓存的头，失败信息要带上限流原因。"""
+
+    def test_阅读器请求带不走缓存头(self):
+        class Session:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, url, timeout=None, headers=None):
+                self.calls.append((url, headers))
+                return FakeResponse(200, NUMBERED_PAGE)
+
+        session = Session()
+        ftl.fetch_guide(session, GUIDE, "reader", 10)
+        self.assertEqual(session.calls[0][1], {"X-No-Cache": "true"})
+
+    def test_403要把阅读器正文里的原因带出来(self):
+        body = ('{"code":403,"name":"AbuseAlleviationError","message":'
+                '"Anonymous access to domain www.wowhead.com blocked"}')
+
+        class Session:
+            def get(self, url, timeout=None, headers=None):
+                return FakeResponse(403, body)
+
+        with self.assertRaises(ftl.FetchError) as ctx:
+            ftl.http_get(Session(), "https://r.jina.ai/x", 10)
+        self.assertIn("AbuseAlleviationError", str(ctx.exception))
 
 
 class RetryTest(unittest.TestCase):
