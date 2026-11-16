@@ -11,17 +11,17 @@
 ## 目录
 
 ```
-index.html              首页（统计图表 + 排行榜）
-pages/                  子页面：职业天梯、画廊、开荒记录、攻略、配色预览
+index.html              首页（天梯标签切换 + 统计图表 + 排行榜）
+pages/                  子页面：职业天梯总览、画廊、开荒记录、攻略、配色预览
 css/                    样式（main.css 通过 @import 组合）
 js/
   main.js               入口：按页面元素条件初始化
   config.js             全局配置与错误处理
   core/                 通用工具（HTML 转义等）
   data/                 静态数据与配色表（wow-classes / specs / tier-lists / palettes）
-  components/           可复用 UI（TierList / Chart / 导航 / Header / Footer）
+  components/           可复用 UI（TierList / TierListTabs / Chart / 导航 / Header / Footer）
   modules/              页面级控制器（统计、WCL、画廊、灯箱、粒子）
-  pages/                子页面入口（排名总览、配色预览）
+  pages/                子页面入口（首页天梯、排名总览、配色预览）
 netlify/functions/      服务端函数（CommonJS）
 tools/                  Python 数据管道与校验
 data/                   生成产物（page_data.json 入库；数据库与成员名单不入库）

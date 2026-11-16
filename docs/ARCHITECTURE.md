@@ -6,7 +6,7 @@
 
 | 页面 | 额外入口 | 初始化的模块 |
 |---|---|---|
-| `index.html` | — | `GuildStatsLoader`、`ImageModal`、`ParticleSystem`、`IframeErrorHandler` |
+| `index.html` | `js/pages/home-tier-list.js` | `TierListTabs`（6 份天梯标签切换，默认大秘境 DPS）、`GuildStatsLoader`、`ImageModal`、`ParticleSystem`、`IframeErrorHandler` |
 | `pages/all-rankings.html` | `js/pages/all-rankings.js` | `TierList` × 6、`RankingNav` + `main.js` 的通用逻辑 |
 | `pages/gallery.html` | — | `ImageUploader`、`ImageModal` |
 | `pages/wcl.html` | — | `WCLDataLoader` |
@@ -23,9 +23,9 @@ js/
   config.js        CONFIG（含 debug 开关）、log()、全局错误处理
   core/            无业务依赖的工具（dom.js: escapeHtml / escapeAttr / byId；icons.js: 内联 SVG 图标）
   data/            纯数据：职业表、专精注册表、天梯排名、图表配色
-  components/      可复用 UI：TierList、Chart、RankingNav、Header、Footer、Nav
+  components/      可复用 UI：TierList、TierListTabs、Chart、RankingNav、Header、Footer、Nav
   modules/         页面级控制器：统计、WCL、画廊、灯箱、粒子
-  pages/           子页面入口（all-rankings / class-colors），只做装配
+  pages/           页面入口（首页天梯、排名总览、配色预览），只做装配
 ```
 
 依赖方向：`modules` → `components` → `data` / `core`；`data` 不得反向依赖其他层。
@@ -66,6 +66,7 @@ JS 侧需要十六进制值时调用 `js/data/wow-classes.js#resolveClassColor(c
 - `js/data/specs.js`：专精注册表，key 形如 `paladin|防护`，值为 `{ class, spec, icon }`
 - `js/data/*-tier-list.js`：只保存层级与 id 列表，例如 `S: { specs: ['paladin|防护'] }`
 - `js/components/TierList.js`：渲染，颜色取自 `resolveClassColor`
+- `js/components/TierListTabs.js`：首页顶部用，六份天梯同一张卡片里按标签切换，一次只渲染一份（总览页仍然六份并列）
 
 新增专精要改三处：`specs.js`（id + 图标）、`tools/wow_terms.py#SPEC_BY_EN`（英文名 → id，天梯抓取与成员统计共用）、`js/components/TierList.js#TIER_ORDER`（只在新增档位时改）。6 份天梯文件共享同一份图标定义，且由脚本生成，不要手改。
 

@@ -16,7 +16,18 @@
 <nav class="nav-container" aria-label="主菜单"></nav>
 <!-- 主内容区 -->
   <main class="main-content">
-    
+
+    <!-- 职业天梯（标签切换，一次只显示一份；总览页 pages/all-rankings.html 仍然六份并列） -->
+    <article class="content-card">
+      <header>
+        <h2>职业专精天梯图</h2>
+        <p class="stats-update-time">
+          Wowhead 每周自动更新 · <a href="pages/all-rankings.html">查看六份并列</a>
+        </p>
+      </header>
+      <div id="home-tier-tabs"></div>
+    </article>
+
     <!-- 公会统计数据 -->
     <article class="content-card">
       <header>
@@ -204,6 +215,7 @@
     </article>
   </main>
 
+<script type="module" src="js/pages/home-tier-list.js"></script>
 <script type="module" src="js/main.js"></script>
 </body>
   

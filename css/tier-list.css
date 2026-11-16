@@ -149,6 +149,60 @@
   color: var(--color-text-secondary);
 }
 
+/* ====== 首页天梯标签切换 ====== */
+/* 6 份天梯共用一张卡片，标签一次只显示一份；总览页不用这套 */
+
+.tier-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: var(--space-lg);
+}
+
+.tier-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--color-bg);
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tier-tab:hover {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.tier-tab.is-active {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 键盘焦点要看得见（点击时不额外描边） */
+.tier-tab:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 768px) {
+  .tier-tabs {
+    gap: 0.4rem;
+  }
+
+  .tier-tab {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+  }
+}
+
 @keyframes tierFadeInUp {
   to {
     opacity: 1;
