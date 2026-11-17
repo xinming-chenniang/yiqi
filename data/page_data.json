@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-11-16 10:25:42",
-  "dataAsOf": "2026-11-16",
+  "lastUpdated": "2026-11-17 11:23:51",
+  "dataAsOf": "2026-11-17",
   "stats": {
     "totalMembers": 722,
     "activeMembers": 696,
     "activeWindow": {
       "days": 30,
-      "since": "2026-10-17",
-      "latest": "2026-11-16",
+      "since": "2026-10-18",
+      "latest": "2026-11-17",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
@@ -477,7 +477,7 @@
         "class": "战士",
         "spec": "武器",
         "achievement_points": 46375,
-        "average_item_level": 324.0,
+        "average_item_level": 325.0,
         "mythic_score": 0.0
       },
       {
