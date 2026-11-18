@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-11-17 11:23:51",
-  "dataAsOf": "2026-11-17",
+  "lastUpdated": "2026-11-18 10:56:11",
+  "dataAsOf": "2026-11-18",
   "stats": {
     "totalMembers": 722,
     "activeMembers": 696,
     "activeWindow": {
       "days": 30,
-      "since": "2026-10-18",
-      "latest": "2026-11-17",
+      "since": "2026-10-19",
+      "latest": "2026-11-18",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
@@ -440,11 +440,11 @@
     "genderDistribution": [
       {
         "name": "女",
-        "value": 391
+        "value": 390
       },
       {
         "name": "男",
-        "value": 331
+        "value": 332
       }
     ]
   },
@@ -485,9 +485,9 @@
         "name": "情让人伤神",
         "realm": "燃烧之刃",
         "class": "圣骑士",
-        "spec": "神圣",
-        "achievement_points": 45230,
-        "average_item_level": 328.0,
+        "spec": "防护",
+        "achievement_points": 45240,
+        "average_item_level": 329.0,
         "mythic_score": 3782.3
       },
       {
@@ -862,7 +862,7 @@
         "spec": "神圣",
         "achievement_points": 38895,
         "average_item_level": 333.0,
-        "mythic_score": 3810.8
+        "mythic_score": 3826.0
       },
       {
         "rank": 2,
@@ -879,9 +879,9 @@
         "name": "情让人伤神",
         "realm": "燃烧之刃",
         "class": "圣骑士",
-        "spec": "神圣",
-        "achievement_points": 45230,
-        "average_item_level": 328.0,
+        "spec": "防护",
+        "achievement_points": 45240,
+        "average_item_level": 329.0,
         "mythic_score": 3782.3
       },
       {
