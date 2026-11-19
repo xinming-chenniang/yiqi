@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-11-18 10:56:11",
-  "dataAsOf": "2026-11-18",
+  "lastUpdated": "2026-11-19 10:58:51",
+  "dataAsOf": "2026-11-19",
   "stats": {
     "totalMembers": 722,
     "activeMembers": 696,
     "activeWindow": {
       "days": 30,
-      "since": "2026-10-19",
-      "latest": "2026-11-18",
+      "since": "2026-10-20",
+      "latest": "2026-11-19",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
@@ -104,7 +104,7 @@
       },
       {
         "name": "暗夜精灵",
-        "value": 43
+        "value": 42
       },
       {
         "name": "亡灵",
@@ -148,7 +148,7 @@
       },
       {
         "name": "人类",
-        "value": 13
+        "value": 14
       },
       {
         "name": "黑铁矮人",
@@ -440,11 +440,11 @@
     "genderDistribution": [
       {
         "name": "女",
-        "value": 390
+        "value": 389
       },
       {
         "name": "男",
-        "value": 332
+        "value": 333
       }
     ]
   },
@@ -861,7 +861,7 @@
         "class": "圣骑士",
         "spec": "神圣",
         "achievement_points": 38895,
-        "average_item_level": 333.0,
+        "average_item_level": 333.25,
         "mythic_score": 3826.0
       },
       {
@@ -980,7 +980,7 @@
         "realm": "国王之谷",
         "class": "萨满祭司",
         "spec": "恢复",
-        "achievement_points": 26890,
+        "achievement_points": 26950,
         "average_item_level": 333.0,
         "mythic_score": 3430.7
       },
