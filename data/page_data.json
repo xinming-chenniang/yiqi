@@ -1,17 +1,17 @@
 {
-  "lastUpdated": "2026-11-19 10:58:51",
-  "dataAsOf": "2026-11-19",
+  "lastUpdated": "2026-11-20 10:46:27",
+  "dataAsOf": "2026-11-20",
   "stats": {
     "totalMembers": 722,
     "activeMembers": 696,
     "activeWindow": {
       "days": 30,
-      "since": "2026-10-20",
-      "latest": "2026-11-19",
+      "since": "2026-10-21",
+      "latest": "2026-11-20",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
-      "mplusActive": 80
+      "mplusActive": 81
     },
     "dataCompleteness": {
       "total": 722,
@@ -457,7 +457,7 @@
         "class": "猎人",
         "spec": "野兽控制",
         "achievement_points": 52325,
-        "average_item_level": 336.0,
+        "average_item_level": 335.0,
         "mythic_score": 3495.8
       },
       {
@@ -476,7 +476,7 @@
         "realm": "阿尔萨斯",
         "class": "战士",
         "spec": "武器",
-        "achievement_points": 46375,
+        "achievement_points": 46385,
         "average_item_level": 325.0,
         "mythic_score": 0.0
       },
@@ -485,7 +485,7 @@
         "name": "情让人伤神",
         "realm": "燃烧之刃",
         "class": "圣骑士",
-        "spec": "防护",
+        "spec": "神圣",
         "achievement_points": 45240,
         "average_item_level": 329.0,
         "mythic_score": 3782.3
@@ -597,7 +597,7 @@
         "class": "圣骑士",
         "spec": "惩戒",
         "achievement_points": 43095,
-        "average_item_level": 334.0,
+        "average_item_level": 334.188,
         "mythic_score": 2654.0
       },
       {
@@ -627,7 +627,7 @@
         "class": "潜行者",
         "spec": "狂徒",
         "achievement_points": 43095,
-        "average_item_level": 269.0,
+        "average_item_level": 276.0,
         "mythic_score": 0.0
       },
       {
@@ -637,7 +637,7 @@
         "class": "恶魔猎手",
         "spec": "浩劫",
         "achievement_points": 43095,
-        "average_item_level": 287.0,
+        "average_item_level": 288.0,
         "mythic_score": 0.0
       },
       {
@@ -861,7 +861,7 @@
         "class": "圣骑士",
         "spec": "神圣",
         "achievement_points": 38895,
-        "average_item_level": 333.25,
+        "average_item_level": 334.0,
         "mythic_score": 3826.0
       },
       {
@@ -871,7 +871,7 @@
         "class": "法师",
         "spec": "奥术",
         "achievement_points": 24865,
-        "average_item_level": 334.0,
+        "average_item_level": 335.0,
         "mythic_score": 3805.1
       },
       {
@@ -879,7 +879,7 @@
         "name": "情让人伤神",
         "realm": "燃烧之刃",
         "class": "圣骑士",
-        "spec": "防护",
+        "spec": "神圣",
         "achievement_points": 45240,
         "average_item_level": 329.0,
         "mythic_score": 3782.3
@@ -890,7 +890,7 @@
         "realm": "阿尔萨斯",
         "class": "猎人",
         "spec": "野兽控制",
-        "achievement_points": 20030,
+        "achievement_points": 20040,
         "average_item_level": 334.0,
         "mythic_score": 3677.0
       },
@@ -951,7 +951,7 @@
         "class": "猎人",
         "spec": "野兽控制",
         "achievement_points": 52325,
-        "average_item_level": 336.0,
+        "average_item_level": 335.0,
         "mythic_score": 3495.8
       },
       {
@@ -981,7 +981,7 @@
         "class": "萨满祭司",
         "spec": "恢复",
         "achievement_points": 26950,
-        "average_item_level": 333.0,
+        "average_item_level": 334.0,
         "mythic_score": 3430.7
       },
       {
@@ -1051,7 +1051,7 @@
         "class": "圣骑士",
         "spec": "神圣",
         "achievement_points": 24155,
-        "average_item_level": 333.0,
+        "average_item_level": 334.0,
         "mythic_score": 3233.9
       }
     ]
