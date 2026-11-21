@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-11-20 10:46:27",
-  "dataAsOf": "2026-11-20",
+  "lastUpdated": "2026-11-21 10:29:54",
+  "dataAsOf": "2026-11-21",
   "stats": {
     "totalMembers": 722,
     "activeMembers": 696,
     "activeWindow": {
       "days": 30,
-      "since": "2026-10-21",
-      "latest": "2026-11-20",
+      "since": "2026-10-22",
+      "latest": "2026-11-21",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
@@ -597,7 +597,7 @@
         "class": "圣骑士",
         "spec": "惩戒",
         "achievement_points": 43095,
-        "average_item_level": 334.188,
+        "average_item_level": 335.0,
         "mythic_score": 2654.0
       },
       {
@@ -632,22 +632,22 @@
       },
       {
         "rank": 19,
+        "name": "德丫",
+        "realm": "死亡之翼",
+        "class": "德鲁伊",
+        "spec": "守护",
+        "achievement_points": 43095,
+        "average_item_level": 294.0,
+        "mythic_score": 0.0
+      },
+      {
+        "rank": 20,
         "name": "污丫",
         "realm": "阿尔萨斯",
         "class": "恶魔猎手",
         "spec": "浩劫",
         "achievement_points": 43095,
         "average_item_level": 288.0,
-        "mythic_score": 0.0
-      },
-      {
-        "rank": 20,
-        "name": "燒丫",
-        "realm": "阿尔萨斯",
-        "class": "术士",
-        "spec": "毁灭",
-        "achievement_points": 43095,
-        "average_item_level": 287.0,
         "mythic_score": 0.0
       }
     ],
