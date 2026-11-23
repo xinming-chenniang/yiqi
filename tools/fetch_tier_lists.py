@@ -70,6 +70,21 @@ READER_WARNING_MARKER = "warning:"
 # Warning 也正是它自己提示的 “cached snapshot … consider retry with caching opt-out”。
 READER_HEADERS = {"X-No-Cache": "true"}
 
+# 2026-11-23：jina 对 GitHub runner 的出口 IP 直接回 401
+# （AuthenticationRequiredError / “blocked from performing anonymous queries due to bad IP
+# reputation”）—— 同一个页面家用 IP 仍回 200，所以这不是“wowhead 又改版”，而是匿名额度按 IP 判死。
+# 带 API key 的请求不走匿名额度；key 由 CI secret 注入，本机没有就退回匿名（家里照常能抓）。
+JINA_API_KEY_ENV = "JINA_API_KEY"
+
+
+def reader_headers() -> dict:
+    """阅读器请求头：绕过缓存的头 + 有 key 就带上（key 只在读环境变量时取，便于测试注入）。"""
+    headers = dict(READER_HEADERS)
+    key = os.environ.get(JINA_API_KEY_ENV, "").strip()
+    if key:
+        headers["Authorization"] = f"Bearer {key}"
+    return headers
+
 # 阅读器正常取页时 Final URL 就是 wowhead 原地址；跳到站外说明跟进了广告/追踪跳转。
 FINAL_URL_RE = re.compile(r"(?m)^Final URL:\s*(\S+)\s*$")
 READER_HOST_SUFFIX = "wowhead.com"
@@ -232,7 +247,10 @@ def http_get(session: requests.Session, url: str, timeout: int, headers: Optiona
             # 只报 “HTTP 403” 的话 CI 日志看不出是被谁挡的。
             detail = re.sub(r"\s+", " ", response.text or "").strip()[:300]
             last_error = f"HTTP {response.status_code}" + (f": {detail}" if detail else "")
-            if response.status_code in (403, 404):
+            if response.status_code in (401, 403, 404):
+                # 401 只在匿名额度被拒时出现（jina 的 bad IP reputation），重试不会变好。
+                if response.status_code == 401 and READER_PREFIX in url:
+                    last_error += f"（需要 {JINA_API_KEY_ENV}，见 tools/fetch_tier_lists.py 顶部）"
                 break
         time.sleep(attempt * 2)
     raise FetchError(f"{url} → {last_error}")
@@ -276,7 +294,7 @@ def fetch_guide(session: requests.Session, guide: Guide, route: str, timeout: in
             if route == "direct":
                 raise
             LOG.warning("直连失败（%s），改走阅读器", exc)
-    text = http_get(session, READER_PREFIX + guide.url, timeout, READER_HEADERS)
+    text = http_get(session, READER_PREFIX + guide.url, timeout, reader_headers())
     validate_reader_payload(text, guide)
     return text
 

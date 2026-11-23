@@ -6,6 +6,7 @@
 这里只测纯解析与渲染，不走网络——抓取逻辑由 .github/workflows/tier-list-refresh.yml 兜。
 """
 
+import os
 import sys
 import tempfile
 import unittest
@@ -239,6 +240,30 @@ class HttpGetTest(unittest.TestCase):
         with self.assertRaises(ftl.FetchError) as ctx:
             ftl.http_get(Session(), "https://r.jina.ai/x", 10)
         self.assertIn("AbuseAlleviationError", str(ctx.exception))
+
+    def test_有key时阅读器请求带Authorization(self):
+        """2026-11-23：runner 的匿名请求被 jina 判成 bad IP reputation，只能靠 key 走授权额度。"""
+        os.environ[ftl.JINA_API_KEY_ENV] = "jina_test_key"
+        try:
+            self.assertEqual(
+                ftl.reader_headers(),
+                {"X-No-Cache": "true", "Authorization": "Bearer jina_test_key"},
+            )
+        finally:
+            del os.environ[ftl.JINA_API_KEY_ENV]
+
+    def test_401要提示缺JINA_API_KEY且不重试(self):
+        calls = []
+
+        class Session:
+            def get(self, url, timeout=None, headers=None):
+                calls.append(url)
+                return FakeResponse(401, '{"code":401,"name":"AuthenticationRequiredError"}')
+
+        with self.assertRaises(ftl.FetchError) as ctx:
+            ftl.http_get(Session(), "https://r.jina.ai/x", 10)
+        self.assertIn(ftl.JINA_API_KEY_ENV, str(ctx.exception))
+        self.assertEqual(len(calls), 1, "401 是匿名额度被拒，重试没有意义")
 
 
 class RetryTest(unittest.TestCase):

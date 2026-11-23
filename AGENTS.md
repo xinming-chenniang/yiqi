@@ -29,6 +29,10 @@
    但**不带这个头时重试等于原地打转**，三次重试只是一次。另外 `validate_reader_payload` 现在要求
    `Final URL` 落在 `wowhead.com`：**没有 Warning 的站外页**旧代码会当正常正文放行（已用旧版复现），
    现在直接判取页失败。
+   **阅读器匿名额度按 IP 判死，CI 必须带 `JINA_API_KEY`**（2026-11-23 加）：runner 出口 IP 被
+   jina 回 `401 AuthenticationRequiredError / bad IP reputation`（同一页家用 IP 仍 200），
+   带 `Authorization: Bearer <key>` 才走授权额度。key 由仓库 secret 注入；**本机没配也能抓**
+   （退回匿名），所以"我这跑得通、CI 401"不是页面变了。
 6. **`.cache/tier-lists/` 是离线重跑缓存，别删**：改解析逻辑用 `--offline` 复跑，不联网；
    旁边的 `*.failed.md` 是最近一次失败抓到的原文，CI 作业失败时会作为 artifact 上传。
 7. **CSP 白名单在 `netlify.toml`**：新增外部图片 / 脚本 / 字体域名要同时改对应 `*-src`，

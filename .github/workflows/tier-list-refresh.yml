@@ -30,6 +30,10 @@ jobs:
       # 以前是先 --check 再生成，同一批页面要抓两遍，阅读器额度翻倍。
       - name: 抓取并生成
         run: python tools/fetch_tier_lists.py
+        env:
+          # 2026-11-23：runner 的出口 IP 被 jina 判成 bad IP reputation，匿名请求直接 401；
+          # 带 key 的请求走授权额度。secret 没配时退回匿名（家里跑不需要 key）。
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
 
       # 新专精没登记时脚本会直接失败，这里再让测试兜一层：
       # 天梯里的每个专精 id 都必须能在 specs.js 解析出来。
