@@ -1,5 +1,11 @@
 # 一起公会 · 站点
 
+> **状态**：**已结项 · 自动运行中**（2026-11-26 结项，代码冻结于 tag `v1.0-final`）
+> **处置**：保留，不需要日常维护 —— 数据由 GitHub Actions 每日/每周抓取并提交，Netlify 自动构建；
+> 唯一的"值班"是收到 Actions 失败通知时看一眼（入口见文末「自动运行」）。故障定位先读 `AGENTS.md`「自检」与「验证边界」。
+> **出处**：2025-03 起自建；远程仓库 <https://github.com/xinming-chenniang/yiqi>（PUBLIC，Actions 分钟数不限）
+> **关联**：`D:\开发项目\AGENTS.md` 项目清单；结项记录 `D:\开发项目\handoffs\archive\（已完成）20261126-yiqi-结项保活.md`
+
 魔兽世界「一起」公会的静态站点：首页统计、职业天梯、开荒记录、公会画廊，以及「其他」里的归档攻略与视频。
 
 - 前端：原生 ES Modules + 多文件 CSS，无构建步骤
@@ -148,3 +154,24 @@ npm run format:check  # Prettier 检查
 ## 部署
 
 推送到 `main` 分支后由 Netlify 自动构建；`netlify.toml` 已声明发布目录、函数目录、Node 版本、安全响应头（含 CSP）与缓存策略。
+
+## 自动运行（结项后的运维口径）
+
+结项 ≠ 停机。代码不再演进，但下面这条链一直在跑，**坏了要能快速定位**：
+
+| 环节 | 位置 | 频率 | 失败会怎样 |
+|---|---|---|---|
+| 成员数据刷新 | `.github/workflows/guild-stats-refresh.yml` | 每日 03:00 UTC（北京 11:00） | Actions 变红；页面数据停在上一版 |
+| 天梯数据刷新 | `.github/workflows/tier-list-refresh.yml` | 每周一 02:00 UTC（北京 10:00） | Actions 变红 + 上传 `tier-list-pages` artifact；天梯停在上一版 |
+| 构建与发布 | Netlify 站点 `yiqi-guild`（`https://yiqi-guild.netlify.app`） | 每次 `main` 有新提交 | Netlify 侧构建失败，需看 Netlify 面板 |
+| README 提到的孤儿站 | Netlify 站点 `yiqitest`（2025-03 测试遗留） | — | 与本项目无关，可删 |
+
+**数据停了先看三处**（按顺序，别猜）：
+1. `gh run list --limit 5` —— 哪条红了；
+2. 红的那条 → artifact / 日志里的 `Warning: … not yet fully loaded`（阅读器空壳页）或 HTTP 401（jina 匿名额度按 IP 判死，需仓库 secret `JINA_API_KEY`）；
+3. 本地复跑同样命令验证是同因还是偶发：`python tools/fetch_tier_lists.py --offline --check`（离线验解析）、`python tools/validate.py`（验产物结构）。
+
+> **已知失败模式**（2026-11 实测，修法见 `AGENTS.md` 第 5 条）：天梯任务**最近 3 次计划运行连续失败**
+> （11-09 / 11-16 / 11-23；此前 10-26、11-02 两次成功），每次都靠当天手动 `workflow_dispatch` 补跑恢复 ——
+> 结项后看到红，先手动补跑一次，多数情况下就过去了。
+

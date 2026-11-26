@@ -41,7 +41,7 @@
    Python 测试会 import 抓取脚本，先 `pip install -r requirements.txt`。
 9. **别把 `docs/archive/` 当现状**：旧英雄榜管线（`tools/build_page_data.py`）留作对照，
    现役是 RIO 管线（`build_page_data_rio.py`）；归档文档里提到的 `js/modules/DPSTierList.js`
-   早已删除（见 `docs/REFACTOR_PLAN.md` P1-1），别按归档去把它补回来。
+   早已删除（见 `docs/archive/REFACTOR_PLAN.md` P1-1），别按归档去把它补回来。
 
 ## 自检（改完必须能复跑）
 
