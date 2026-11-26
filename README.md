@@ -161,17 +161,22 @@ npm run format:check  # Prettier 检查
 
 | 环节 | 位置 | 频率 | 失败会怎样 |
 |---|---|---|---|
-| 成员数据刷新 | `.github/workflows/guild-stats-refresh.yml` | 每日 03:00 UTC（北京 11:00） | Actions 变红；页面数据停在上一版 |
-| 天梯数据刷新 | `.github/workflows/tier-list-refresh.yml` | 每周一 02:00 UTC（北京 10:00） | Actions 变红 + 上传 `tier-list-pages` artifact；天梯停在上一版 |
+| 成员数据刷新 | `.github/workflows/guild-stats-refresh.yml` | 每日 03:17 UTC（北京 11:17） | Actions 变红；页面数据停在上一版 |
+| 天梯数据刷新 | `.github/workflows/tier-list-refresh.yml` | **周一 + 周四** 各一次（北京 09:23 / 17:23，内含两轮整批重试） | Actions 变红 + 上传 `tier-list-pages` artifact；天梯停在上一版，等下一轮兜底 |
 | 构建与发布 | Netlify 站点 `yiqi-guild`（`https://yiqi-guild.netlify.app`） | 每次 `main` 有新提交 | Netlify 侧构建失败，需看 Netlify 面板 |
 | README 提到的孤儿站 | Netlify 站点 `yiqitest`（2025-03 测试遗留） | — | 与本项目无关，可删 |
 
+**为什么天梯要跑两轮**：结项后无人值守，"一周只跑一次、失败就落后一整周"是不可接受的下限。
+周四那轮是兜底；数据没变化时不会产生空提交。两个 cron 都避开整点（GitHub 的 schedule 在整点高峰会被延迟或丢弃）。
+
 **数据停了先看三处**（按顺序，别猜）：
 1. `gh run list --limit 5` —— 哪条红了；
-2. 红的那条 → artifact / 日志里的 `Warning: … not yet fully loaded`（阅读器空壳页）或 HTTP 401（jina 匿名额度按 IP 判死，需仓库 secret `JINA_API_KEY`）；
+2. 红的那条 → artifact / 日志里的 `Warning: … not yet fully loaded`（阅读器空壳页）、`cached snapshot`（缓存快照）或 HTTP 401（jina 按 IP 判 bad reputation，需仓库 secret `JINA_API_KEY`）；
 3. 本地复跑同样命令验证是同因还是偶发：`python tools/fetch_tier_lists.py --offline --check`（离线验解析）、`python tools/validate.py`（验产物结构）。
 
-> **已知失败模式**（2026-11 实测，修法见 `AGENTS.md` 第 5 条）：天梯任务**最近 3 次计划运行连续失败**
-> （11-09 / 11-16 / 11-23；此前 10-26、11-02 两次成功），每次都靠当天手动 `workflow_dispatch` 补跑恢复 ——
-> 结项后看到红，先手动补跑一次，多数情况下就过去了。
+> **已知失败模式**（2026-11 实测，修法见 `AGENTS.md` 第 5 条）：11 月天梯计划运行连续失败 3 次，
+> 每次都对应一次已提交的修复 —— 11-09 单页解析出 0 个专精（加脚本内重试）、11-16 阅读器缓存快照
+> （加 `X-No-Cache`）、11-23 runner IP 被 jina 判死回 401（加 `JINA_API_KEY`）。
+> 11-23 修复后手动 dispatch 已验证成功；计划运行的**下次验收点是 11-30（周一）**。
+> 看到红先手动 `workflow_dispatch` 补跑一次，多数情况下就过去了。
 

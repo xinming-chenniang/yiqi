@@ -33,6 +33,9 @@
    jina 回 `401 AuthenticationRequiredError / bad IP reputation`（同一页家用 IP 仍 200），
    带 `Authorization: Bearer <key>` 才走授权额度。key 由仓库 secret 注入；**本机没配也能抓**
    （退回匿名），所以"我这跑得通、CI 401"不是页面变了。
+   **2026-11-26 结项时加了余量**：天梯任务一周跑两轮（周一 + 周四，cron 都避开整点 —— GitHub 的
+   schedule 在整点高峰会被延迟甚至丢弃），抓取步骤外包两轮整批重试（脚本内的重试管单页解析失败，
+   外层管整批失败 / runner 冷启动）。改这段时**别把双 cron、非整点、外层重试改回去**。
 6. **`.cache/tier-lists/` 是离线重跑缓存，别删**：改解析逻辑用 `--offline` 复跑，不联网；
    旁边的 `*.failed.md` 是最近一次失败抓到的原文，CI 作业失败时会作为 artifact 上传。
 7. **CSP 白名单在 `netlify.toml`**：新增外部图片 / 脚本 / 字体域名要同时改对应 `*-src`，

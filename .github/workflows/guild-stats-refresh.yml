@@ -4,7 +4,8 @@ name: 公会成员数据刷新
 # 为什么不抓英雄榜：wow.blizzard.cn 的英雄榜要求战网登录，CI 里没有登录态（见 docs/DATA_PIPELINE.md §12）。
 on:
   schedule:
-    - cron: '0 3 * * *'   # UTC 03:00 = 北京时间 11:00
+    # 避开整点：GitHub 的 schedule 在整点高负载时会被延迟甚至丢弃（2026-11-26 结项时改）。
+    - cron: '17 3 * * *'   # UTC 03:17 = 北京时间 11:17
   workflow_dispatch:
 
 permissions:
