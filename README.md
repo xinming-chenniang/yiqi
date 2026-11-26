@@ -76,7 +76,8 @@ python tools/fetch_tier_lists.py --check      # 只比对差异（CI / 定时任
 ACTIVE_DAYS=14 python tools/build_page_data_rio.py
 ```
 
-注意：当前链路只需要网络的公开接口，不依赖本地数据库；旧链路的数据库与配置**不在版本库中**，要用时需另行获取。
+注意：当前链路只需要网络的公开接口，不依赖本地数据库；旧链路的数据库与名单导出**不在版本库里**，
+2026-11-26 结项时已移到归档区：`D:\dsh\_archive\20261126-yiqi-旧链路本地数据\（guild_database.db + guildmember.csv，只用旧管线做对照时才需要）。
 
 ## 环境变量
 
