@@ -177,6 +177,8 @@ npm run format:check  # Prettier 检查
 > **已知失败模式**（2026-11 实测，修法见 `AGENTS.md` 第 5 条）：11 月天梯计划运行连续失败 3 次，
 > 每次都对应一次已提交的修复 —— 11-09 单页解析出 0 个专精（加脚本内重试）、11-16 阅读器缓存快照
 > （加 `X-No-Cache`）、11-23 runner IP 被 jina 判死回 401（加 `JINA_API_KEY`）。
-> 11-23 修复后手动 dispatch 已验证成功；计划运行的**下次验收点是 11-30（周一）**。
-> 看到红先手动 `workflow_dispatch` 补跑一次，多数情况下就过去了。
+> **11-26 结项当天手动 dispatch 又暴露一种**：`mplus-tank` 的 `/cn/` 页被阅读器跟到
+> `s.amazon-adsystem.com` 广告追踪页（正文只有一行 1x1 像素），脚本内 3 轮 × 外层 2 轮全失败，
+> 整批不写 → 已加"换英文版再取一次"的兜底（`guide_url_variants`）。
+> 看到红先手动 `workflow_dispatch` 补跑一次；补跑仍红时按下面三处定位。
 

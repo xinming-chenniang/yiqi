@@ -285,8 +285,26 @@ def validate_reader_payload(text: str, guide: Guide) -> None:
         raise BadPayloadError(f"阅读器返回的是 404 页: {guide.url}", text)
 
 
+def guide_url_variants(guide: Guide) -> List[str]:
+    """同一份内容的备用取页地址：`/cn/` 页被阅读器跟到广告跳转时，改试英文版。
+
+    2026-11-26 实测：`mplus-tank` 的 `/cn/` 页经阅读器取回来 `Final URL` 是
+    `s.amazon-adsystem.com`（正文只有一行 1x1 追踪像素），脚本内三次重试都是同一结果，
+    整批因此失败。广告跳转是 wowhead 页面自己带的，换语言版本是同一条管道的另一条渲染路径；
+    专精映射本来就按英文名（`SPEC_BY_EN`），语义不变。
+    """
+    urls = [guide.url]
+    if "/cn/" in guide.url:
+        urls.append(guide.url.replace("/cn/", "/", 1))
+    return urls
+
+
 def fetch_guide(session: requests.Session, guide: Guide, route: str, timeout: int) -> str:
-    """按 route 取页面原文；reader 模式拿到的是 r.jina.ai 的 markdown。"""
+    """按 route 取页面原文；reader 模式拿到的是 r.jina.ai 的 markdown。
+
+    阅读器路径按 `guide_url_variants` 逐个试：正文被广告页顶掉时换一个语言版本再要一次，
+    比「整批失败、等下一次定时任务」便宜得多（2026-11-26 加）。
+    """
     if route in ("auto", "direct"):
         try:
             return http_get(session, guide.url, timeout)
@@ -294,9 +312,17 @@ def fetch_guide(session: requests.Session, guide: Guide, route: str, timeout: in
             if route == "direct":
                 raise
             LOG.warning("直连失败（%s），改走阅读器", exc)
-    text = http_get(session, READER_PREFIX + guide.url, timeout, reader_headers())
-    validate_reader_payload(text, guide)
-    return text
+    last_error: Optional[Exception] = None
+    for url in guide_url_variants(guide):
+        if url != guide.url:
+            LOG.warning("%s: 上一个地址没拿到正文（%s），改试 %s", guide.key, last_error, url)
+        try:
+            text = http_get(session, READER_PREFIX + url, timeout, reader_headers())
+            validate_reader_payload(text, guide)
+            return text
+        except FetchError as exc:  # BadPayloadError 也是 FetchError
+            last_error = exc
+    raise last_error if last_error else FetchError(f"{guide.url} → 没有可用的取页路径")
 
 
 def body_after_content(text: str) -> str:

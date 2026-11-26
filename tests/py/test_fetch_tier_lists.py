@@ -303,5 +303,42 @@ class RetryTest(unittest.TestCase):
             self.assertIn("Warning: This page maybe not yet fully loaded", dump.read_text(encoding="utf-8"))
 
 
+class VariantFallbackTest(unittest.TestCase):
+    """2026-11-26：单页正文被广告跳转顶掉时，换语言版本再取一次，别让整批失败。"""
+
+    def test_中文页被广告劫持时改试英文页(self):
+        class Session:
+            def __init__(self):
+                self.calls = []
+
+            def get(self, url, timeout=None, headers=None):
+                self.calls.append(url)
+                if "/cn/" in url:
+                    return FakeResponse(200, AD_REDIRECT_PAGE)
+                return FakeResponse(200, NUMBERED_PAGE)
+
+        session = Session()
+        text = ftl.fetch_guide(session, GUIDE, "reader", 10)
+        self.assertEqual(len(session.calls), 2)
+        self.assertIn("/cn/", session.calls[0])
+        self.assertNotIn("/cn/", session.calls[1])
+        self.assertIn("Markdown Content:", text)
+
+    def test_两个版本都失败时报出最后一次错误(self):
+        class Session:
+            def get(self, url, timeout=None, headers=None):
+                return FakeResponse(200, AD_REDIRECT_PAGE)
+
+        with self.assertRaises(ftl.BadPayloadError) as ctx:
+            ftl.fetch_guide(Session(), GUIDE, "reader", 10)
+        self.assertIn("站外", str(ctx.exception))
+
+    def test_备用地址只有_cn_页才有(self):
+        self.assertEqual(len(ftl.guide_url_variants(GUIDE)), 2)
+        self.assertNotIn("/cn/", ftl.guide_url_variants(GUIDE)[1])
+        en_guide = ftl.Guide("en", "x", "x.js", "x", "https://www.wowhead.com/guide/x")
+        self.assertEqual(ftl.guide_url_variants(en_guide), [en_guide.url])
+
+
 if __name__ == "__main__":
     unittest.main()
