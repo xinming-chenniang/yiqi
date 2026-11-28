@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-11-27 12:28:57",
-  "dataAsOf": "2026-11-27",
+  "lastUpdated": "2026-11-28 11:53:58",
+  "dataAsOf": "2026-11-28",
   "stats": {
     "totalMembers": 722,
     "activeMembers": 696,
     "activeWindow": {
       "days": 30,
-      "since": "2026-10-28",
-      "latest": "2026-11-27",
+      "since": "2026-10-29",
+      "latest": "2026-11-28",
       "basis": "rio_activity",
       "label": "近 30 天活跃",
       "note": "本季有大秘境记录，或 Raider.IO 在窗口内更新过该角色",
@@ -440,11 +440,11 @@
     "genderDistribution": [
       {
         "name": "女",
-        "value": 387
+        "value": 386
       },
       {
         "name": "男",
-        "value": 335
+        "value": 336
       }
     ]
   },
@@ -585,9 +585,9 @@
         "name": "Ruling",
         "realm": "阿尔萨斯",
         "class": "圣骑士",
-        "spec": "惩戒",
+        "spec": "神圣",
         "achievement_points": 43645,
-        "average_item_level": 335.0,
+        "average_item_level": 331.0,
         "mythic_score": 3009.5
       },
       {
@@ -654,6 +654,26 @@
     "itemLevelRanking": [
       {
         "rank": 1,
+        "name": "居德",
+        "realm": "白银之手",
+        "class": "德鲁伊",
+        "spec": "守护",
+        "achievement_points": 36460,
+        "average_item_level": 779.0,
+        "mythic_score": 0.0
+      },
+      {
+        "rank": 2,
+        "name": "郭敬明之怒",
+        "realm": "阿尔萨斯",
+        "class": "恶魔猎手",
+        "spec": "浩劫",
+        "achievement_points": 29980,
+        "average_item_level": 742.0,
+        "mythic_score": 0.0
+      },
+      {
+        "rank": 3,
         "name": "半熟巴士",
         "realm": "白银之手",
         "class": "圣骑士",
@@ -663,7 +683,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 2,
+        "rank": 4,
         "name": "简隐月子",
         "realm": "白银之手",
         "class": "德鲁伊",
@@ -673,7 +693,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 3,
+        "rank": 5,
         "name": "风怒使者",
         "realm": "阿尔萨斯",
         "class": "圣骑士",
@@ -683,7 +703,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 4,
+        "rank": 6,
         "name": "战七",
         "realm": "阿尔萨斯",
         "class": "圣骑士",
@@ -693,7 +713,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 5,
+        "rank": 7,
         "name": "徳胖胖",
         "realm": "斯克提斯",
         "class": "德鲁伊",
@@ -703,17 +723,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 6,
-        "name": "居德",
-        "realm": "白银之手",
-        "class": "德鲁伊",
-        "spec": "守护",
-        "achievement_points": 36460,
-        "average_item_level": 731.0,
-        "mythic_score": 0.0
-      },
-      {
-        "rank": 7,
+        "rank": 8,
         "name": "Raidhunter",
         "realm": "死亡之翼",
         "class": "猎人",
@@ -723,7 +733,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 8,
+        "rank": 9,
         "name": "喜掰掰",
         "realm": "死亡之翼",
         "class": "猎人",
@@ -733,7 +743,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 9,
+        "rank": 10,
         "name": "小佐手",
         "realm": "死亡之翼",
         "class": "圣骑士",
@@ -743,7 +753,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 10,
+        "rank": 11,
         "name": "Meteorra",
         "realm": "死亡之翼",
         "class": "法师",
@@ -753,7 +763,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 11,
+        "rank": 12,
         "name": "武小松",
         "realm": "阿尔萨斯",
         "class": "法师",
@@ -763,7 +773,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 12,
+        "rank": 13,
         "name": "復活吧勇士",
         "realm": "罗宁",
         "class": "死亡骑士",
@@ -773,7 +783,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 13,
+        "rank": 14,
         "name": "银月晓梦",
         "realm": "无尽之海",
         "class": "潜行者",
@@ -783,7 +793,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 14,
+        "rank": 15,
         "name": "道别哀歌",
         "realm": "阿尔萨斯",
         "class": "战士",
@@ -793,7 +803,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 15,
+        "rank": 16,
         "name": "崾妳掵彡仟",
         "realm": "斯克提斯",
         "class": "死亡骑士",
@@ -803,7 +813,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 16,
+        "rank": 17,
         "name": "Mengsk",
         "realm": "伊利丹",
         "class": "武僧",
@@ -813,7 +823,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 17,
+        "rank": 18,
         "name": "蝴蝶杰",
         "realm": "阿尔萨斯",
         "class": "猎人",
@@ -823,7 +833,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 18,
+        "rank": 19,
         "name": "顾北清歌寒",
         "realm": "燃烧之刃",
         "class": "牧师",
@@ -833,7 +843,7 @@
         "mythic_score": 0.0
       },
       {
-        "rank": 19,
+        "rank": 20,
         "name": "死亡頌歌丶",
         "realm": "银松森林",
         "class": "死亡骑士",
@@ -841,16 +851,6 @@
         "achievement_points": 0,
         "average_item_level": 712.25,
         "mythic_score": 2740.9
-      },
-      {
-        "rank": 20,
-        "name": "文能定乾坤",
-        "realm": "斯克提斯",
-        "class": "猎人",
-        "spec": "野兽控制",
-        "achievement_points": 20275,
-        "average_item_level": 710.0,
-        "mythic_score": 0.0
       }
     ],
     "mythicScoreRanking": [
@@ -921,7 +921,7 @@
         "class": "恶魔猎手",
         "spec": "复仇",
         "achievement_points": 37575,
-        "average_item_level": 333.0,
+        "average_item_level": 334.0,
         "mythic_score": 3583.9
       },
       {
